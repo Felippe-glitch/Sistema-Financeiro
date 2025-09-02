@@ -20,7 +20,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = Empresa.TABLE_NAME)
 public class Empresa {
-    public static final String TABLE_NAME = "empresa";
+    public static final String TABLE_NAME = "Empresa";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +47,7 @@ public class Empresa {
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
 
-    @Column(name = "email_empresa", length = 60, nullable = false, unique = true)
+    @Column(name = "email_empresa", length = 100, nullable = false, unique = true)
     @NotBlank
     @Size(min = 10, max = 60)
     @Email
