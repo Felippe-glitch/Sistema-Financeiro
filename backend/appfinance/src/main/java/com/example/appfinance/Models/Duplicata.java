@@ -52,11 +52,11 @@ public class Duplicata {
     @Enumerated(EnumType.STRING)
     private StatusDuplicata statusDuplicata;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")
     private Empresa empresa;
 
