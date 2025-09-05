@@ -1,7 +1,7 @@
 package com.example.appfinance.Models;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.example.appfinance.Models.ENUM.StatusDuplicata;
 import com.example.appfinance.Models.ENUM.TipoDuplicata;
@@ -39,11 +39,11 @@ public class Duplicata {
 
     @Column(name = "data_vencimento", nullable = false, length = 10)
     @NotBlank
-    private LocalDate dataVencimento;
+    private LocalDateTime dataVencimento;
 
     @Column(name = "data_emissao", nullable = false, length = 10)
     @NotBlank
-    private LocalDate dataEmissao;
+    private LocalDateTime dataEmissao;
 
     @Column(name = "descricao_duplicata", length = 255)
     private String descricaoDuplicata;
@@ -63,8 +63,8 @@ public class Duplicata {
     // Construtores, getters e setters
     public Duplicata() {}
 
-    public Duplicata(Long idDuplicata, TipoDuplicata tipoDuplicata, BigDecimal valorDuplicata, LocalDate dataVencimento,
-            LocalDate dataEmissao, String descricaoDuplicata, StatusDuplicata statusDuplicata, Usuario usuario,
+    public Duplicata(Long idDuplicata, TipoDuplicata tipoDuplicata, BigDecimal valorDuplicata, LocalDateTime dataVencimento,
+            LocalDateTime dataEmissao, String descricaoDuplicata, StatusDuplicata statusDuplicata, Usuario usuario,
             Empresa empresa) {
         this.idDuplicata = idDuplicata;
         this.tipoDuplicata = tipoDuplicata;
@@ -101,19 +101,19 @@ public class Duplicata {
         this.valorDuplicata = valorDuplicata;
     }
 
-    public LocalDate getDataVencimento() {
+    public LocalDateTime getDataVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(LocalDate dataVencimento) {
+    public void setDataVencimento(LocalDateTime dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 
-    public LocalDate getDataEmissao() {
+    public LocalDateTime getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(LocalDate dataEmissao) {
+    public void setDataEmissao(LocalDateTime dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
 

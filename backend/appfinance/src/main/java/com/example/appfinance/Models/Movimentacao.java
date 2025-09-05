@@ -1,7 +1,6 @@
 package com.example.appfinance.Models;
 
-import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 
 import com.example.appfinance.Models.ENUM.FormaPagamento;
 
@@ -29,7 +28,7 @@ public class Movimentacao {
 
     @Column(name = "data_registro_movimentacao", nullable = false)
     @NotNull
-    private LocalDate dataRegistroMovimentacao;
+    private LocalDateTime dataRegistroMovimentacao;
 
     @Column(name = "forma_pagamento", nullable = false)
     @NotNull
@@ -53,7 +52,7 @@ public class Movimentacao {
     public Movimentacao() {
     }
 
-    public Movimentacao(Long idMovimentacao, LocalDate dataRegistroMovimentacao, FormaPagamento formaPagamento, Duplicata duplicata, Usuario usuario) {
+    public Movimentacao(Long idMovimentacao, LocalDateTime dataRegistroMovimentacao, FormaPagamento formaPagamento, Duplicata duplicata, Usuario usuario) {
         this.idMovimentacao = idMovimentacao;
         this.dataRegistroMovimentacao = dataRegistroMovimentacao;
         this.formaPagamento = formaPagamento;
@@ -69,11 +68,11 @@ public class Movimentacao {
         this.idMovimentacao = idMovimentacao;
     }
 
-    public LocalDate getDataRegistroMovimentacao() {
+    public LocalDateTime getDataRegistroMovimentacao() {
         return dataRegistroMovimentacao;
     }
 
-    public void setDataRegistroMovimentacao(LocalDate dataRegistroMovimentacao) {
+    public void setDataRegistroMovimentacao(LocalDateTime dataRegistroMovimentacao) {
         this.dataRegistroMovimentacao = dataRegistroMovimentacao;
     }
 
