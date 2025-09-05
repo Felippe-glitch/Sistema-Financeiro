@@ -1,0 +1,6 @@
+com\example\appfinance\Models\Empresa.class
+com\example\appfinance\Models\Banco.class
+com\example\appfinance\Models\ENUM\TipoPessoa.class
+com\example\appfinance\Models\Usuario.class
+com\example\appfinance\AppfinanceApplication.class
+com\example\appfinance\Models\ENUM\TipoEmpresa.class
