@@ -69,3 +69,6 @@ O backend utiliza o **SQL Server** com as seguintes entidades principais:
     spring.datasource.password=**SUA_SENHA**
     spring.jpa.hibernate.ddl-auto=update
     spring.jpa.show-sql=true
+3. Execute no diretório "~/Desktop/Sistema-Financeiro/backend/appfinance"
+   ```bash
+     mvn spring-boot:run
