@@ -63,8 +63,9 @@ O backend utiliza o **SQL Server** com as seguintes entidades principais:
    ```bash
    git clone https://github.com/Felippe-glitch/Sistema-Financeiro.git
 2. Atere o **application.properties** para seu servidor e seu usuário/senha
-   spring.datasource.url=jdbc:sqlserver://**localhost:1433**;databaseName=financeiro
-  spring.datasource.username=**SEU_USUARIO**
-  spring.datasource.password=**SUA_SENHA**
-  spring.jpa.hibernate.ddl-auto=update
-  spring.jpa.show-sql=true
+   ```bash
+    spring.datasource.url=jdbc:sqlserver://**localhost:1433**;databaseName=financeiro
+    spring.datasource.username=**SEU_USUARIO**
+    spring.datasource.password=**SUA_SENHA**
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.show-sql=true
