@@ -83,4 +83,12 @@ public class Banco {
     public void setConta(String conta) {
         this.conta = conta;
     }
+
+    public BigDecimal getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
 }

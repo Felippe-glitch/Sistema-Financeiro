@@ -92,11 +92,23 @@ public class Movimentacao {
         this.duplicata = duplicata;
     }
 
+    public Banco getBanco() {
+        return banco;
+    }
+
+    public void setBanco(Banco banco) {
+        this.banco = banco;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public boolean getTipo() {
+        throw new UnsupportedOperationException("Unimplemented method 'getTipo'");
     }
 }
