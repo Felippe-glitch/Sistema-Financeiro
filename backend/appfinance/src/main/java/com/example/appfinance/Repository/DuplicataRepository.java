@@ -12,4 +12,7 @@ public interface DuplicataRepository extends JpaRepository<Duplicata, Long> {
 
     // LISTAR DUPLICATAS POR ID DO USUÁRIO
     List<Duplicata> findByUsuario_IdUsuario(Long idUsuario);
+
+    //LISTAR DUPLICATAS PELO ID DA EMPRESA
+    List<Duplicata> findByEmpresa_IdEmpresa(Long idEmpresa);
 }
