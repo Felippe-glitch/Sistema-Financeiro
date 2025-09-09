@@ -11,4 +11,6 @@ import com.example.appfinance.Models.ENUM.TipoEmpresa;
 @Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
     List<Empresa> findByTipoEmpresa(TipoEmpresa tipoEmpresa);
+
+    boolean existsByCpfCnpj(String cpfCnpj);
 }
