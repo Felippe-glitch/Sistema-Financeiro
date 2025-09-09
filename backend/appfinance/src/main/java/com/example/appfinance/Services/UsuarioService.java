@@ -22,7 +22,7 @@ public class UsuarioService {
     // CRUD PARA USUARIO
     @Transactional
     public Usuario createUsuario(Usuario usuario){
-        if(usuarioRepository.existsByEmail(usuario.getEmailUsuario())){
+        if(usuarioRepository.existsByEmailUsuario(usuario.getEmailUsuario())){
             throw new RuntimeErrorException(null, "Email já cadastrado: " + usuario.getEmailUsuario());
         } else{
             usuario.setIdUsuario(null);

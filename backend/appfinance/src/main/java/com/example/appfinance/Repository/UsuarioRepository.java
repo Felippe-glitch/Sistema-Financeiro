@@ -7,5 +7,5 @@ import com.example.appfinance.Models.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    boolean existsByEmail(String email);
+    boolean existsByEmailUsuario(String emailUsuario);
 }
