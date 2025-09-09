@@ -214,5 +214,15 @@ public class Empresa {
     public void setPaisEmpresa(String paisEmpresa) {
         this.paisEmpresa = paisEmpresa;
     }
+
+    public Object getEndereco() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEndereco'");
+    }
+
+    public void setEndereco(Object endereco) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setEndereco'");
+    }
 }
 

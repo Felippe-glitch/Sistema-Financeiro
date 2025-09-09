@@ -24,10 +24,10 @@ public class Usuario {
     @NotBlank
     private String nomeUsuario;
 
-    @Column(name = "login_usuario", nullable = false, length = 100, unique = true)
+    @Column(name = "email_usuario", nullable = false, length = 100, unique = true)
     @NotBlank
     @Size(min = 5, max = 100)
-    private String loginUsuario;
+    private String emailUsuario;
 
     @Column(name = "senha_usuario", nullable = false)
     @NotBlank
@@ -41,7 +41,7 @@ public class Usuario {
     public Usuario(Long idUsuario, String nomeUsuario, String loginUsuario, String senhaUsuario) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
-        this.loginUsuario = loginUsuario;
+        this.emailUsuario = loginUsuario;
         this.senhaHashUsuario = senhaUsuario;
     }
 
@@ -61,12 +61,12 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public String getLoginUsuario() {
-        return loginUsuario;
+    public String getEmailUsuario() {
+        return emailUsuario;
     }
 
-    public void setLoginUsuario(String loginUsuario) {
-        this.loginUsuario = loginUsuario;
+    public void setEmailUsuario(String EmailUsuario) {
+        this.emailUsuario = EmailUsuario;
     }
 
     public String getSenhaHashUsuario() {
