@@ -61,9 +61,4 @@ public class BancoService {
 
         return bancoRepository.save(banco);
     }
-
-    // LISTAR TODOS OS BANCOS CADASTRADOS
-    public List<Banco> getAllBancos() {
-        return bancoRepository.findAll();
-    }
 }

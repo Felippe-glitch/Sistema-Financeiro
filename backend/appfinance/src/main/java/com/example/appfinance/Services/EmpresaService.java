@@ -60,21 +60,4 @@ public class EmpresaService {
             throw new RuntimeException("Erro ao deletar empresa: " + e.getMessage());
         }
     }
-
-    // ---> MÉTODOS DE LISTAGEM <---
-
-    // LISTAR TODAS AS EMPRESAS
-    public List<Empresa> getAllEmpresas() {
-        return empresaRepository.findAll();
-    }
-
-    // LISTAR TODOS OS CLIENTES
-    public List<Empresa> getClientes() {
-        return empresaRepository.findByTipoEmpresa(TipoEmpresa.CLIENTE);
-    }
-
-    // LISTAR TODOS OS FORNECEDORES
-    public List<Empresa> getFornecedor() {
-        return empresaRepository.findByTipoEmpresa(TipoEmpresa.FORNECEDOR);
-    }
 }

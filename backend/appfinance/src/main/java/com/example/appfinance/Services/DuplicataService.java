@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.appfinance.Models.Duplicata;
+import com.example.appfinance.Models.ENUM.TipoDuplicata;
 import com.example.appfinance.Repository.DuplicataRepository;
 
 @Service
@@ -53,13 +54,4 @@ public class DuplicataService {
         }
     }
     
-    // LISTAR DUPLICATAS PELO ID DO USUÁRIO
-    public List<Duplicata> getDuplicataByUsuarioId(Long usuarioId) {
-        return duplicataRepository.findByUsuario_IdUsuario(usuarioId);
-    }
-
-    // LISTAR DUPLICATAS PELO ID DA EMPRESA
-    public List<Duplicata> getDuplicatasByEmpresaId(Long empresaId){
-        return duplicataRepository.findByEmpresa_IdEmpresa(empresaId);
-    }
 }
