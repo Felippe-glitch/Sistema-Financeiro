@@ -38,10 +38,9 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(Long idUsuario, String nomeUsuario, String loginUsuario, String senhaUsuario) {
+    public Usuario(Long idUsuario, String nomeUsuario, String senhaUsuario) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
-        this.emailUsuario = loginUsuario;
         this.senhaHashUsuario = senhaUsuario;
     }
 
