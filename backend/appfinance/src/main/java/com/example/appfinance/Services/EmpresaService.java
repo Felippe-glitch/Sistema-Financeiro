@@ -1,9 +1,12 @@
 package com.example.appfinance.Services;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.appfinance.Models.Empresa;
+import com.example.appfinance.Models.Usuario;
 import com.example.appfinance.Repository.EmpresaRepository;
 
 @Service
@@ -56,5 +59,11 @@ public class EmpresaService {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao deletar empresa: " + e.getMessage());
         }
+    }
+
+    public Empresa getEmpresa(Long id) {
+        Optional<Empresa> usuario = this.empresaRepository.findById(id);
+        return usuario.orElseThrow(() -> new RuntimeException(
+                "Empresa não encontrado! id: " + id));
     }
 }

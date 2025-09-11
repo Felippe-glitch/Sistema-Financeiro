@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -20,7 +21,12 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = Empresa.TABLE_NAME)
 public class Empresa {
+    
+    public interface CreateEmpresa{}
+    public interface UpdateEmpresa{}
+
     public static final String TABLE_NAME = "Empresa";
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,8 +71,7 @@ public class Empresa {
 
     @Column(name = "numero_empresa", length = 3, nullable = false)
     @NotNull
-    @NotEmpty
-    @Size(min = 1)
+    @Min(1)
     private Integer numeroEmpresa;
 
     @Column(name = "bairro_empresa", length = 60, nullable = false)
@@ -213,16 +218,6 @@ public class Empresa {
 
     public void setPaisEmpresa(String paisEmpresa) {
         this.paisEmpresa = paisEmpresa;
-    }
-
-    public Object getEndereco() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEndereco'");
-    }
-
-    public void setEndereco(Object endereco) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setEndereco'");
     }
 }
 
