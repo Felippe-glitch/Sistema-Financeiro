@@ -1,5 +1,8 @@
 package com.example.appfinance.Services;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.management.RuntimeErrorException;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.appfinance.Models.Usuario;
 import com.example.appfinance.Repository.UsuarioRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UsuarioService {
@@ -21,10 +26,10 @@ public class UsuarioService {
 
     // CRUD PARA USUARIO
     @Transactional
-    public Usuario createUsuario(Usuario usuario){
-        if(usuarioRepository.existsByEmailUsuario(usuario.getEmailUsuario())){
+    public Usuario createUsuario(Usuario usuario) {
+        if (usuarioRepository.existsByEmailUsuario(usuario.getEmailUsuario())) {
             throw new RuntimeErrorException(null, "Email já cadastrado: " + usuario.getEmailUsuario());
-        } else{
+        } else {
             usuario.setIdUsuario(null);
             usuario.setSenhaHashUsuario(passwordEncoder.encode(usuario.getSenhaHashUsuario()));
             usuario = this.usuarioRepository.save(usuario);
@@ -33,8 +38,9 @@ public class UsuarioService {
     }
 
     @Transactional
-    public Usuario updateUsuario(Usuario usuario){
-        Usuario newUsuario = usuarioRepository.findById(usuario.getIdUsuario()).orElseThrow(() -> new RuntimeException("Usuário não encontrado: " + usuario.getIdUsuario()));
+    public Usuario updateUsuario(Usuario usuario) {
+        Usuario newUsuario = usuarioRepository.findById(usuario.getIdUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado: " + usuario.getIdUsuario()));
 
         newUsuario.setNomeUsuario(usuario.getNomeUsuario());
         newUsuario.setEmailUsuario(usuario.getEmailUsuario());
@@ -48,13 +54,17 @@ public class UsuarioService {
     }
 
     @Transactional
-    public Usuario deleteUsuario(Long id){
-        try {
-            Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado: " + id));
-            usuarioRepository.deleteById(id);
-            return usuario;
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao deletar usuário: " + e.getMessage());
-        }
+    public void deleteUsuario(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado: " + id));
+
+        usuarioRepository.delete(usuario);
     }
+
+    public Usuario getUsuario(Long id) {
+        Optional<Usuario> usuario = this.usuarioRepository.findById(id);
+        return usuario.orElseThrow(() -> new RuntimeException(
+                "Usuário não encontrado! id: " + id));
+    }
+
 }
