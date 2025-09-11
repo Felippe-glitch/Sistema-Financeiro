@@ -13,6 +13,9 @@ import jakarta.validation.constraints.Size;
 @Table(name = Usuario.TABLE_NAME)
 public class Usuario {
 
+    public interface CreateUsuario{}
+    public interface UpdateUsuario{}
+
     public static final String TABLE_NAME = "Usuario";
 
     @Id
