@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.example.appfinance.Models.ENUM.StatusDuplicata;
-import com.example.appfinance.Models.ENUM.TipoDuplicata;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,22 +19,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = Duplicata.TABLE_NAME)
-public class Duplicata {
-    public static final String TABLE_NAME = "Duplicata";
+@Table(name = Pagar.TABLE_NAME)
+public class Pagar {
+    public static final String TABLE_NAME = "pagar";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_duplicata")
-    private Long idDuplicata;
+    @Column(name = "id_pagar")
+    private Long idContaPagar;
 
-    @Column(name = "tipo_duplicata", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TipoDuplicata tipoDuplicata;
-
-    @Column(name = "valor_duplicata", precision = 10, scale = 2, nullable = false, length = 10)
+    @Column(name = "valor_pagar", precision = 10, scale = 2, nullable = false, length = 10)
     @NotNull
-    private BigDecimal valorDuplicata;
+    private BigDecimal valorPagar;
 
     @Column(name = "data_vencimento", nullable = false, length = 10)
     @NotBlank
@@ -45,60 +40,64 @@ public class Duplicata {
     @NotBlank
     private LocalDateTime dataEmissao;
 
-    @Column(name = "descricao_duplicata", length = 255)
-    private String descricaoDuplicata;
+    @Column(name = "descricao_pagar", length = 255)
+    private String descricaoPagar;
 
-    @Column(name = "status_duplicata", nullable = false)
+    @Column(name = "status_receber", nullable = false)
     @Enumerated(EnumType.STRING)
-    private StatusDuplicata statusDuplicata;
+    private StatusDuplicata statusPagar;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")
+    @JoinColumn(name = "fk_empresa", referencedColumnName = "id_empresa")
     private Empresa empresa;
 
-    // Construtores, getters e setters
-    public Duplicata() {}
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "fk_banco", referencedColumnName = "id_banco")
+    private Banco fkBanco;
 
-    public Duplicata(Long idDuplicata, TipoDuplicata tipoDuplicata, BigDecimal valorDuplicata, LocalDateTime dataVencimento,
-            LocalDateTime dataEmissao, String descricaoDuplicata, StatusDuplicata statusDuplicata, Usuario usuario,
-            Empresa empresa) {
-        this.idDuplicata = idDuplicata;
-        this.tipoDuplicata = tipoDuplicata;
-        this.valorDuplicata = valorDuplicata;
+    // Construtores, getters e setters
+    public Pagar() {}
+
+    public Pagar(Long idDuplicata, BigDecimal valorPagar, LocalDateTime dataVencimento,
+            LocalDateTime dataEmissao, String descricaoPagar, StatusDuplicata statusPagar, Usuario usuario,
+            Empresa empresa, Banco fkBanco) {
+        this.idContaPagar = idDuplicata;
+        this.valorPagar = valorPagar;
         this.dataVencimento = dataVencimento;
         this.dataEmissao = dataEmissao;
-        this.descricaoDuplicata = descricaoDuplicata;
-        this.statusDuplicata = statusDuplicata;
+        this.descricaoPagar = descricaoPagar;
+        this.statusPagar = statusPagar;
         this.usuario = usuario;
         this.empresa = empresa;
+        this.fkBanco = fkBanco;
     }
 
     public Long getIdDuplicata() {
-        return idDuplicata;
+        return idContaPagar;
     }
 
     public void setIdDuplicata(Long idDuplicata) {
-        this.idDuplicata = idDuplicata;
+        this.idContaPagar = idDuplicata;
     }
 
-    public TipoDuplicata getTipoDuplicata() {
-        return tipoDuplicata;
+    public Banco getFkBanco() {
+        return fkBanco;
     }
 
-    public void setTipoDuplicata(TipoDuplicata tipoDuplicata) {
-        this.tipoDuplicata = tipoDuplicata;
+    public void setFkBanco(Banco idBanco) {
+        this.fkBanco = idBanco;
     }
 
-    public BigDecimal getValorDuplicata() {
-        return valorDuplicata;
+    public BigDecimal getValorPagar() {
+        return valorPagar;
     }
 
-    public void setValorDuplicata(BigDecimal valorDuplicata) {
-        this.valorDuplicata = valorDuplicata;
+    public void setValorPagar(BigDecimal valorPagar) {
+        this.valorPagar = valorPagar;
     }
 
     public LocalDateTime getDataVencimento() {
@@ -117,20 +116,20 @@ public class Duplicata {
         this.dataEmissao = dataEmissao;
     }
 
-    public String getDescricaoDuplicata() {
-        return descricaoDuplicata;
+    public String getDescricaoPagar() {
+        return descricaoPagar;
     }
 
-    public void setDescricaoDuplicata(String descricaoDuplicata) {
-        this.descricaoDuplicata = descricaoDuplicata;
+    public void setDescricaoPagar(String descricaoPagar) {
+        this.descricaoPagar = descricaoPagar;
     }
 
-    public StatusDuplicata getStatusDuplicata() {
-        return statusDuplicata;
+    public StatusDuplicata getStatusPagar() {
+        return statusPagar;
     }
 
-    public void setStatusDuplicata(StatusDuplicata statusDuplicata) {
-        this.statusDuplicata = statusDuplicata;
+    public void setStatusPagar(StatusDuplicata statusPagar) {
+        this.statusPagar = statusPagar;
     }
 
     public Usuario getUsuario() {

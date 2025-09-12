@@ -3,6 +3,7 @@ package com.example.appfinance.Models;
 import java.time.LocalDateTime;
 
 import com.example.appfinance.Models.ENUM.FormaPagamento;
+import com.example.appfinance.Models.ENUM.TipoDuplicata;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,13 +36,9 @@ public class Movimentacao {
     @Enumerated(EnumType.STRING)
     private FormaPagamento formaPagamento;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_duplicata", referencedColumnName = "id_duplicata")
-    private Duplicata duplicata;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
+    @Column(name = "tipo_duplicata", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TipoDuplicata TipoDuplicata;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
@@ -52,12 +49,12 @@ public class Movimentacao {
     public Movimentacao() {
     }
 
-    public Movimentacao(Long idMovimentacao, LocalDateTime dataRegistroMovimentacao, FormaPagamento formaPagamento, Duplicata duplicata, Usuario usuario) {
+    public Movimentacao(Long idMovimentacao, LocalDateTime dataRegistroMovimentacao, FormaPagamento formaPagamento, Banco banco, TipoDuplicata duplicata) {
         this.idMovimentacao = idMovimentacao;
         this.dataRegistroMovimentacao = dataRegistroMovimentacao;
         this.formaPagamento = formaPagamento;
-        this.duplicata = duplicata;
-        this.usuario = usuario;
+        this.TipoDuplicata = duplicata;
+        this.banco = banco;
     }
 
     public Long getIdMovimentacao() {
@@ -84,12 +81,12 @@ public class Movimentacao {
         this.formaPagamento = formaPagamento;
     }
 
-    public Duplicata getDuplicata() {
-        return duplicata;
+    public TipoDuplicata getDuplicata() {
+        return TipoDuplicata;
     }
 
-    public void setDuplicata(Duplicata duplicata) {
-        this.duplicata = duplicata;
+    public void setDuplicata(TipoDuplicata duplicata) {
+        this.TipoDuplicata = duplicata;
     }
 
     public Banco getBanco() {
@@ -98,17 +95,5 @@ public class Movimentacao {
 
     public void setBanco(Banco banco) {
         this.banco = banco;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public boolean getTipo() {
-        throw new UnsupportedOperationException("Unimplemented method 'getTipo'");
     }
 }
