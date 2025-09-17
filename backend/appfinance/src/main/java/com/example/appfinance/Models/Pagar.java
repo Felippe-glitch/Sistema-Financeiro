@@ -17,8 +17,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
 @Table(name = Pagar.TABLE_NAME)
 public class Pagar {
     public static final String TABLE_NAME = "pagar";
@@ -58,93 +64,4 @@ public class Pagar {
     @ManyToOne(optional = false)
     @JoinColumn(name = "fk_banco", referencedColumnName = "id_banco")
     private Banco fkBanco;
-
-    // Construtores, getters e setters
-    public Pagar() {}
-
-    public Pagar(Long idDuplicata, BigDecimal valorPagar, LocalDateTime dataVencimento,
-            LocalDateTime dataEmissao, String descricaoPagar, StatusDuplicata statusPagar, Usuario usuario,
-            Empresa empresa, Banco fkBanco) {
-        this.idContaPagar = idDuplicata;
-        this.valorPagar = valorPagar;
-        this.dataVencimento = dataVencimento;
-        this.dataEmissao = dataEmissao;
-        this.descricaoPagar = descricaoPagar;
-        this.statusPagar = statusPagar;
-        this.usuario = usuario;
-        this.empresa = empresa;
-        this.fkBanco = fkBanco;
-    }
-
-    public Long getIdDuplicata() {
-        return idContaPagar;
-    }
-
-    public void setIdDuplicata(Long idDuplicata) {
-        this.idContaPagar = idDuplicata;
-    }
-
-    public Banco getFkBanco() {
-        return fkBanco;
-    }
-
-    public void setFkBanco(Banco idBanco) {
-        this.fkBanco = idBanco;
-    }
-
-    public BigDecimal getValorPagar() {
-        return valorPagar;
-    }
-
-    public void setValorPagar(BigDecimal valorPagar) {
-        this.valorPagar = valorPagar;
-    }
-
-    public LocalDateTime getDataVencimento() {
-        return dataVencimento;
-    }
-
-    public void setDataVencimento(LocalDateTime dataVencimento) {
-        this.dataVencimento = dataVencimento;
-    }
-
-    public LocalDateTime getDataEmissao() {
-        return dataEmissao;
-    }
-
-    public void setDataEmissao(LocalDateTime dataEmissao) {
-        this.dataEmissao = dataEmissao;
-    }
-
-    public String getDescricaoPagar() {
-        return descricaoPagar;
-    }
-
-    public void setDescricaoPagar(String descricaoPagar) {
-        this.descricaoPagar = descricaoPagar;
-    }
-
-    public StatusDuplicata getStatusPagar() {
-        return statusPagar;
-    }
-
-    public void setStatusPagar(StatusDuplicata statusPagar) {
-        this.statusPagar = statusPagar;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
 }

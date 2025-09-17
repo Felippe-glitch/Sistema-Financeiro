@@ -17,8 +17,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
 @Table(name = Empresa.TABLE_NAME)
 public class Empresa {
     
@@ -79,7 +85,7 @@ public class Empresa {
     @Size(min = 3)
     private String bairroEmpresa;
 
-    @Column(name = "cep_empresa", length = 8, nullable = false)
+    @Column(name = "cep_empresa", length = 9, nullable = false)
     @NotBlank
     @Size(min = 5)
     private String cepEmpresa;
@@ -91,133 +97,5 @@ public class Empresa {
     @Column(name = "pais_empresa", length = 50, nullable = false)
     @NotBlank
     private String paisEmpresa;
-
-    // Constructors
-
-    public Empresa(){}
-
-    public Empresa(Long idEmpresa, String razaoSocial, TipoEmpresa tipoEmpresa, String cpfCnpj, TipoPessoa tipoPessoa,
-                   String email, String telefone, String ruaEmpresa, Integer numeroEmpresa, String bairroEmpresa,
-                   String cepEmpresa, String estadoEmpresa, String paisEmpresa) {
-        this.idEmpresa = idEmpresa;
-        this.razaoSocial = razaoSocial;
-        this.tipoEmpresa = tipoEmpresa;
-        this.cpfCnpj = cpfCnpj;
-        this.tipoPessoa = tipoPessoa;
-        this.email = email;
-        this.telefone = telefone;
-        this.ruaEmpresa = ruaEmpresa;
-        this.numeroEmpresa = numeroEmpresa;
-        this.bairroEmpresa = bairroEmpresa;
-        this.cepEmpresa = cepEmpresa;
-        this.estadoEmpresa = estadoEmpresa;
-        this.paisEmpresa = paisEmpresa;
-    }
-
-    // Getters and Setters
-
-    public Long getIdEmpresa() {
-        return idEmpresa;
-    }
-
-    public void setIdEmpresa(Long idEmpresa) {
-        this.idEmpresa = idEmpresa;
-    }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
-    }
-
-    public TipoEmpresa getTipoEmpresa() {
-        return tipoEmpresa;
-    }
-
-    public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
-        this.tipoEmpresa = tipoEmpresa;
-    }
-
-    public String getCpfCnpj() {
-        return cpfCnpj;
-    }
-
-    public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
-    }
-
-    public TipoPessoa getTipoPessoa() {
-        return tipoPessoa;
-    }
-
-    public void setTipoPessoa(TipoPessoa tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getRuaEmpresa() {
-        return ruaEmpresa;
-    }
-
-    public void setRuaEmpresa(String ruaEmpresa) {
-        this.ruaEmpresa = ruaEmpresa;
-    }
-
-    public Integer getNumeroEmpresa() {
-        return numeroEmpresa;
-    }
-
-    public void setNumeroEmpresa(Integer numeroEmpresa) {
-        this.numeroEmpresa = numeroEmpresa;
-    }
-
-    public String getBairroEmpresa() {
-        return bairroEmpresa;
-    }
-
-    public void setBairroEmpresa(String bairroEmpresa) {
-        this.bairroEmpresa = bairroEmpresa;
-    }
-
-    public String getCepEmpresa() {
-        return cepEmpresa;
-    }
-
-    public void setCepEmpresa(String cepEmpresa) {
-        this.cepEmpresa = cepEmpresa;
-    }
-
-    public String getEstadoEmpresa() {
-        return estadoEmpresa;
-    }
-
-    public void setEstadoEmpresa(String estadoEmpresa) {
-        this.estadoEmpresa = estadoEmpresa;
-    }
-
-    public String getPaisEmpresa() {
-        return paisEmpresa;
-    }
-
-    public void setPaisEmpresa(String paisEmpresa) {
-        this.paisEmpresa = paisEmpresa;
-    }
 }
 

@@ -8,8 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
 @Table(name = Usuario.TABLE_NAME)
 public class Usuario {
 
@@ -36,46 +42,4 @@ public class Usuario {
     @NotBlank
     @Size(min = 8, max = 100)
     private String senhaHashUsuario;
-
-    // Construtores, getters e setters
-
-    public Usuario() {}
-
-    public Usuario(Long idUsuario, String nomeUsuario, String senhaUsuario) {
-        this.idUsuario = idUsuario;
-        this.nomeUsuario = nomeUsuario;
-        this.senhaHashUsuario = senhaUsuario;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
-    }
-
-    public String getEmailUsuario() {
-        return emailUsuario;
-    }
-
-    public void setEmailUsuario(String EmailUsuario) {
-        this.emailUsuario = EmailUsuario;
-    }
-
-    public String getSenhaHashUsuario() {
-        return senhaHashUsuario;
-    }
-
-    public void setSenhaHashUsuario(String senhaHashUsuario) {
-        this.senhaHashUsuario = senhaHashUsuario;
-    }
 }

@@ -16,8 +16,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@AllArgsConstructor
+@Getter
+@Setter
 @Table(name = Movimentacao.TABLE_NAME)
 public class Movimentacao {
     public static final String TABLE_NAME = "Movimentacao";
@@ -43,57 +49,4 @@ public class Movimentacao {
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
     private Banco banco;
-
-    // Construtores, getters e setters
-
-    public Movimentacao() {
-    }
-
-    public Movimentacao(Long idMovimentacao, LocalDateTime dataRegistroMovimentacao, FormaPagamento formaPagamento, Banco banco, TipoDuplicata duplicata) {
-        this.idMovimentacao = idMovimentacao;
-        this.dataRegistroMovimentacao = dataRegistroMovimentacao;
-        this.formaPagamento = formaPagamento;
-        this.TipoDuplicata = duplicata;
-        this.banco = banco;
-    }
-
-    public Long getIdMovimentacao() {
-        return idMovimentacao;
-    }
-
-    public void setIdMovimentacao(Long idMovimentacao) {
-        this.idMovimentacao = idMovimentacao;
-    }
-
-    public LocalDateTime getDataRegistroMovimentacao() {
-        return dataRegistroMovimentacao;
-    }
-
-    public void setDataRegistroMovimentacao(LocalDateTime dataRegistroMovimentacao) {
-        this.dataRegistroMovimentacao = dataRegistroMovimentacao;
-    }
-
-    public FormaPagamento getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(FormaPagamento formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
-
-    public TipoDuplicata getDuplicata() {
-        return TipoDuplicata;
-    }
-
-    public void setDuplicata(TipoDuplicata duplicata) {
-        this.TipoDuplicata = duplicata;
-    }
-
-    public Banco getBanco() {
-        return banco;
-    }
-
-    public void setBanco(Banco banco) {
-        this.banco = banco;
-    }
 }

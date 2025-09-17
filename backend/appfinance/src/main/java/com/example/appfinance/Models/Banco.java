@@ -11,8 +11,14 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
 @Table(name = Banco.TABLE_NAME)
 public class Banco {
     public static final String TABLE_NAME = "Banco";
@@ -39,56 +45,4 @@ public class Banco {
     @NotNull
     @PositiveOrZero
     private BigDecimal saldo = BigDecimal.ZERO;
-
-    // Construtores, getters e setters
-
-    public Banco() {
-    }
-
-    public Banco(Long idBanco, String nomeBanco, String agencia, String conta) {
-        this.idBanco = idBanco;
-        this.nomeBanco = nomeBanco;
-        this.agencia = agencia;
-        this.conta = conta;
-    }
-
-    public Long getIdBanco() {
-        return idBanco;
-    }
-
-    public void setIdBanco(Long idBanco) {
-        this.idBanco = idBanco;
-    }
-
-    public String getNomeBanco() {
-        return nomeBanco;
-    }
-
-    public void setNomeBanco(String nomeBanco) {
-        this.nomeBanco = nomeBanco;
-    }
-
-    public String getAgencia() {
-        return agencia;
-    }
-
-    public void setAgencia(String agencia) {
-        this.agencia = agencia;
-    }
-
-    public String getConta() {
-        return conta;
-    }
-
-    public void setConta(String conta) {
-        this.conta = conta;
-    }
-
-    public BigDecimal getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
-    }
 }
