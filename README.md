@@ -11,7 +11,7 @@ O sistema é um projeto da disciplina de Banco de Dados II da Universidade Vila 
 - **Spring**
   - **Spring Web** 
   - **Spring Data JPA**
-  - Spring Boot
+  - **Spring Boot**
   - **Spring Security** 
   - **Spring Boot Starter Validation** 
   - **Spring Boot DevTools** 
