@@ -24,40 +24,41 @@ public class BancoService {
         return banco;
     }
 
-    @Transactional
-    public Banco updateBanco(Banco banco) {
-        Banco newBanco = bancoRepository.findById(banco.getIdBanco())
-                .orElseThrow(() -> new RuntimeException("Banco não encontrado" + banco.getIdBanco()));
+    // @Transactional
+    // public Banco updateBanco(Banco banco) {
+    //     Banco newBanco = bancoRepository.findById(banco.getIdBanco())
+    //             .orElseThrow(() -> new RuntimeException("Banco não encontrado" + banco.getIdBanco()));
 
-        newBanco.setNomeBanco(banco.getNomeBanco());
-        newBanco.setAgencia(banco.getAgencia());
-        newBanco.setConta(banco.getConta());
-        newBanco = bancoRepository.save(newBanco);
-        return newBanco;
-    }
+    //     newBanco.setNomeBanco(banco.getNomeBanco());
+    //     newBanco.setAgencia(banco.getAgencia());
+    //     newBanco.setConta(banco.getConta());
+    //     newBanco = bancoRepository.save(newBanco);
+    //     return newBanco;
+    // }
 
     @Transactional
     public void deleteBanco(Long id) {
         try {
             bancoRepository.deleteById(id);
+            System.out.println("Banco deletado com sucesso!");
         } catch (Exception e) {
             throw new RuntimeException("Erro ao deletar banco: " + e.getMessage());
         }
     }
 
-    @Transactional
-    public Banco atualizarSaldo(Long idBanco, BigDecimal valor, boolean isEntrada) {
-        Banco banco = bancoRepository.findById(idBanco)
-                .orElseThrow(() -> new RuntimeException("Banco não encontrado com ID: " + idBanco));
+    // @Transactional
+    // public Banco atualizarSaldo(Long idBanco, BigDecimal valor, boolean isEntrada) {
+    //     Banco banco = bancoRepository.findById(idBanco)
+    //             .orElseThrow(() -> new RuntimeException("Banco não encontrado com ID: " + idBanco));
 
-        BigDecimal saldoAtual = banco.getSaldo() != null ? banco.getSaldo() : BigDecimal.ZERO;
+    //     BigDecimal saldoAtual = banco.getSaldo() != null ? banco.getSaldo() : BigDecimal.ZERO;
 
-        if (isEntrada) {
-            banco.setSaldo(saldoAtual.add(valor));
-        } else {
-            banco.setSaldo(saldoAtual.subtract(valor));
-        }
+    //     if (isEntrada) {
+    //         banco.setSaldo(saldoAtual.add(valor));
+    //     } else {
+    //         banco.setSaldo(saldoAtual.subtract(valor));
+    //     }
 
-        return bancoRepository.save(banco);
-    }
+    //     return bancoRepository.save(banco);
+    // }
 }

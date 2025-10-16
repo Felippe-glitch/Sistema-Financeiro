@@ -33,18 +33,22 @@ public class Empresa {
 
     public static final String TABLE_NAME = "Empresa";
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_empresa", unique = true)
+    @Column(name = "idEmpresa", unique = true)
     private Long idEmpresa;
 
-    @Column(name = "razao_social", length = 100, nullable = false)
+    @Column(name = "razaoSocial", length = 100, nullable = false)
     @NotBlank
     @Size(min = 2, max = 100)
     private String razaoSocial;
 
-    @Column(name = "tipo_empresa", nullable = false)
+    @Column(name = "nomeFantasia", length = 100, nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 100)
+    private String nomeFantasia;
+
+    @Column(name = "tipoEmpresa", nullable = false)
     @NotNull
     @Enumerated(EnumType.STRING)
     private TipoEmpresa tipoEmpresa;
@@ -54,47 +58,47 @@ public class Empresa {
     @Size(min = 14)
     private String cpfCnpj;
 
-    @Column(name = "tipo_pessoa", nullable = false)
+    @Column(name = "tipoPessoa", nullable = false)
     @NotNull
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
 
-    @Column(name = "email_empresa", length = 100, nullable = false, unique = true)
+    @Column(name = "email", length = 100, nullable = false, unique = true)
     @NotBlank
     @Size(min = 10, max = 60)
     @Email
     private String email;
 
-    @Column(name = "telefone_empresa", length = 20, unique = true, nullable = false)
+    @Column(name = "telefone", length = 20, unique = true, nullable = false)
     @NotNull
     @NotEmpty
     @Size(min = 8, max = 20)
     private String telefone;
 
-    @Column(name = "rua_empresa", length = 60, nullable = false)
+    @Column(name = "rua", length = 60, nullable = false)
     @NotBlank
     private String ruaEmpresa;
 
-    @Column(name = "numero_empresa", length = 3, nullable = false)
+    @Column(name = "numero", length = 3, nullable = false)
     @NotNull
     @Min(1)
     private Integer numeroEmpresa;
 
-    @Column(name = "bairro_empresa", length = 60, nullable = false)
+    @Column(name = "bairro", length = 60, nullable = false)
     @NotBlank
     @Size(min = 3)
     private String bairroEmpresa;
 
-    @Column(name = "cep_empresa", length = 9, nullable = false)
+    @Column(name = "cep", length = 9, nullable = false)
     @NotBlank
     @Size(min = 5)
     private String cepEmpresa;
 
-    @Column(name = "estado_empresa", length = 60, nullable = false)
+    @Column(name = "estado", length = 60, nullable = false)
     @NotBlank
     private String estadoEmpresa;
 
-    @Column(name = "pais_empresa", length = 50, nullable = false)
+    @Column(name = "pais", length = 50, nullable = false)
     @NotBlank
     private String paisEmpresa;
 }

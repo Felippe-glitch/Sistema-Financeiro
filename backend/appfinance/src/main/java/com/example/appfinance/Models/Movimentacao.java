@@ -47,6 +47,6 @@ public class Movimentacao {
     private TipoDuplicata TipoDuplicata;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_banco", referencedColumnName = "id_banco")
-    private Banco banco;
+    @JoinColumn(name = "fkConta", referencedColumnName = "idConta", nullable = false)
+    private Conta fkConta;
 }

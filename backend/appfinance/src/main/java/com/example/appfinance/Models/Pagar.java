@@ -27,41 +27,41 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = Pagar.TABLE_NAME)
 public class Pagar {
-    public static final String TABLE_NAME = "pagar";
+    public static final String TABLE_NAME = "Pagar";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pagar")
+    @Column(name = "idPagar")
     private Long idContaPagar;
 
-    @Column(name = "valor_pagar", precision = 10, scale = 2, nullable = false, length = 10)
+    @Column(name = "valorPagar", precision = 10, scale = 2, nullable = false, length = 10)
     @NotNull
     private BigDecimal valorPagar;
 
-    @Column(name = "data_vencimento", nullable = false, length = 10)
+    @Column(name = "dataVencimento", nullable = false, length = 10)
     @NotBlank
     private LocalDateTime dataVencimento;
 
-    @Column(name = "data_emissao", nullable = false, length = 10)
+    @Column(name = "dataEmissao", nullable = false, length = 10)
     @NotBlank
     private LocalDateTime dataEmissao;
 
-    @Column(name = "descricao_pagar", length = 255)
+    @Column(name = "descricaoPagar", length = 255)
     private String descricaoPagar;
 
-    @Column(name = "status_receber", nullable = false)
+    @Column(name = "statusReceber", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusDuplicata statusPagar;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
+    @Column(name = "usuario", nullable = false, length = 50)
+    @NotBlank
+    private String usuario;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "fk_empresa", referencedColumnName = "id_empresa")
+    @JoinColumn(name = "fkEmpresa", referencedColumnName = "idEmpresa")
     private Empresa empresa;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "fk_banco", referencedColumnName = "id_banco")
-    private Banco fkBanco;
+    @JoinColumn(name = "fkConta", referencedColumnName = "idConta")
+    private Conta conta;
 }

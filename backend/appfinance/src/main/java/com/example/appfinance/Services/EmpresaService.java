@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.appfinance.Models.Empresa;
-import com.example.appfinance.Models.Usuario;
 import com.example.appfinance.Repository.EmpresaRepository;
 
 @Service

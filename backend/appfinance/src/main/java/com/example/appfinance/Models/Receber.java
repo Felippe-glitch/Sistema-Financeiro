@@ -31,37 +31,37 @@ public class Receber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_receber")
+    @Column(name = "idReceber")
     private Long idReceber;
 
-    @Column(name = "valor_receber", precision = 10, scale = 2, nullable = false, length = 10)
+    @Column(name = "valorReceber", precision = 10, scale = 2, nullable = false, length = 10)
     @NotNull
     private BigDecimal valorReceber;
 
-    @Column(name = "data_vencimento", nullable = false, length = 10)
+    @Column(name = "dataVencimento", nullable = false, length = 10)
     @NotBlank
     private LocalDateTime dataVencimento;
 
-    @Column(name = "data_emissao", nullable = false, length = 10)
+    @Column(name = "dataEmissao", nullable = false, length = 10)
     @NotBlank
     private LocalDateTime dataEmissao;
 
-    @Column(name = "descricao_receber", length = 255)
+    @Column(name = "descricaoReceber", length = 255)
     private String descricaoReceber;
 
-    @Column(name = "status_receber", nullable = false)
+    @Column(name = "statusReceber", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusDuplicata statusReceber;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
+    @Column(name = "usuario", nullable = false, length = 50)
+    @NotBlank
+    private String usuario;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")
+    @JoinColumn(name = "fkEmpresa", referencedColumnName = "idEmpresa")
     private Empresa empresa;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "fk_banco", referencedColumnName = "id_banco")
-    private Banco fkBanco;
+    @JoinColumn(name = "fkConta", referencedColumnName = "idConta")
+    private Conta conta;
 }
