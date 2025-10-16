@@ -1,6 +1,6 @@
 # 📊 Sistema Financeiro - Backend
 
-Este repositório contém a **API Backend** da aplicação de gerenciamento financeiro, desenvolvida em **Java** com **Spring Boot** e **SQL Server**.  
+Este repositório contém uma **API RESTful** para uma aplicação de gerenciamento financeiro, desenvolvida em **Java** com **Spring** e **SQL Server**.  
 O sistema é um projeto da disciplina de Banco de Dados II da Universidade Vila Velha que simula a informatização do setor financeiro de uma empresa fictícia, permitindo o controle de clientes, fornecedores, lançamentos bancários, duplicatas e relatórios gerenciais.
 
 ---
@@ -8,9 +8,10 @@ O sistema é um projeto da disciplina de Banco de Dados II da Universidade Vila 
 ## 🚀 Tecnologias Utilizadas
 - **Java 17+**
 - **Maven** 
-- **Spring Boot**
+- **Spring**
   - **Spring Web** 
-  - **Spring Data JPA** 
+  - **Spring Data JPA**
+  - **Spring Boot**
   - **Spring Security** 
   - **Spring Boot Starter Validation** 
   - **Spring Boot DevTools** 
