@@ -1,7 +1,9 @@
 package com.example.appfinance.Services;
 
-import java.math.BigDecimal;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +12,8 @@ import com.example.appfinance.Repository.BancoRepository;
 
 @Service
 public class BancoService {
+
+    @Autowired
     private BancoRepository bancoRepository;
 
     public BancoService(BancoRepository bancoRepository) {
@@ -24,17 +28,15 @@ public class BancoService {
         return banco;
     }
 
-    // @Transactional
-    // public Banco updateBanco(Banco banco) {
-    //     Banco newBanco = bancoRepository.findById(banco.getIdBanco())
-    //             .orElseThrow(() -> new RuntimeException("Banco não encontrado" + banco.getIdBanco()));
+    @Transactional
+    public Banco updateBanco(Banco banco) {
+        Banco newBanco = bancoRepository.findById(banco.getIdBanco())
+                .orElseThrow(() -> new RuntimeException("Banco não encontrado" + banco.getIdBanco()));
 
-    //     newBanco.setNomeBanco(banco.getNomeBanco());
-    //     newBanco.setAgencia(banco.getAgencia());
-    //     newBanco.setConta(banco.getConta());
-    //     newBanco = bancoRepository.save(newBanco);
-    //     return newBanco;
-    // }
+        newBanco.setNomeBanco(banco.getNomeBanco());
+        newBanco = bancoRepository.save(newBanco);
+        return newBanco;
+    }
 
     @Transactional
     public void deleteBanco(Long id) {
@@ -46,19 +48,10 @@ public class BancoService {
         }
     }
 
-    // @Transactional
-    // public Banco atualizarSaldo(Long idBanco, BigDecimal valor, boolean isEntrada) {
-    //     Banco banco = bancoRepository.findById(idBanco)
-    //             .orElseThrow(() -> new RuntimeException("Banco não encontrado com ID: " + idBanco));
+    @Transactional
+    public Page<Banco> getBancos(int page, int pageSize){
+        Pageable pageable = PageRequest.of(page, pageSize);
 
-    //     BigDecimal saldoAtual = banco.getSaldo() != null ? banco.getSaldo() : BigDecimal.ZERO;
-
-    //     if (isEntrada) {
-    //         banco.setSaldo(saldoAtual.add(valor));
-    //     } else {
-    //         banco.setSaldo(saldoAtual.subtract(valor));
-    //     }
-
-    //     return bancoRepository.save(banco);
-    // }
+        return bancoRepository.findAll(pageable);
+    }
 }

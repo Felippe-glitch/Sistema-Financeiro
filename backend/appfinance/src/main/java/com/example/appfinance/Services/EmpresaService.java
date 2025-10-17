@@ -2,9 +2,13 @@ package com.example.appfinance.Services;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.appfinance.Models.Conta;
 import com.example.appfinance.Models.Empresa;
 import com.example.appfinance.Repository.EmpresaRepository;
 
@@ -37,6 +41,7 @@ public class EmpresaService {
         newEmpresa.setTipoEmpresa(empresa.getTipoEmpresa());
         newEmpresa.setCpfCnpj(empresa.getCpfCnpj());
         newEmpresa.setTipoPessoa(empresa.getTipoPessoa());
+        newEmpresa.setNomeFantasia(empresa.getNomeFantasia());
         newEmpresa.setTelefone(empresa.getTelefone());
         newEmpresa.setEmail(empresa.getEmail());
         newEmpresa.setRuaEmpresa(empresa.getRuaEmpresa());
@@ -60,9 +65,10 @@ public class EmpresaService {
         }
     }
 
-    public Empresa getEmpresa(Long id) {
-        Optional<Empresa> usuario = this.empresaRepository.findById(id);
-        return usuario.orElseThrow(() -> new RuntimeException(
-                "Empresa não encontrado! id: " + id));
+    @Transactional
+    public Page<Empresa> getEmpresas(int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+
+        return empresaRepository.findAll(pageable);
     }
 }

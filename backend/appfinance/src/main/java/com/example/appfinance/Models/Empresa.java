@@ -19,12 +19,14 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = Empresa.TABLE_NAME)
 public class Empresa {
     
@@ -101,5 +103,10 @@ public class Empresa {
     @Column(name = "pais", length = 50, nullable = false)
     @NotBlank
     private String paisEmpresa;
+
+    public Empresa orElseThrow(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
+    }
 }
 

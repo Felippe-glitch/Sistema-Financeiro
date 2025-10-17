@@ -1,9 +1,12 @@
 package com.example.appfinance.Controllers;
 
 import java.net.URI;
+
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -39,10 +42,11 @@ public class EmpresaController {
         return ResponseEntity.created(URI).build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Empresa> getEmpresa(@PathVariable Long id) {
-        Empresa empresa = empresaService.getEmpresa(id);
-        return ResponseEntity.ok().body(empresa);
+    @GetMapping
+    public ResponseEntity<Page<Empresa>> listarEmpresas(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int pageSize) {
+        return ResponseEntity.ok(empresaService.getEmpresas(page, pageSize));
     }
 
     @PutMapping("/{id}")

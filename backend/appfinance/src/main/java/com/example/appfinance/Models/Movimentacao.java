@@ -1,5 +1,6 @@
 package com.example.appfinance.Models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.example.appfinance.Models.ENUM.FormaPagamento;
@@ -15,13 +16,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = Movimentacao.TABLE_NAME)
@@ -42,11 +46,19 @@ public class Movimentacao {
     @Enumerated(EnumType.STRING)
     private FormaPagamento formaPagamento;
 
+    @Column(name = "valor_mov", nullable = false)
+    @NotNull
+    private BigDecimal valor;
+
     @Column(name = "tipo_duplicata", nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoDuplicata TipoDuplicata;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "fkConta", referencedColumnName = "idConta", nullable = false)
-    private Conta fkConta;
+    private Conta conta;
+
+    @Column(name = "usuario_cad", nullable = false)
+    @NotBlank
+    private String usuario;
 }
