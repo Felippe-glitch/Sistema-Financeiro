@@ -3,12 +3,8 @@ package com.example.appfinance.Models;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import com.example.appfinance.Models.ENUM.StatusDuplicata;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,6 +27,9 @@ import lombok.Setter;
 public class Pagar {
     public static final String TABLE_NAME = "Pagar";
 
+    public interface CreatePagar{}
+    public interface UpdatePagar{}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPagar")
@@ -41,19 +40,18 @@ public class Pagar {
     private BigDecimal valorPagar;
 
     @Column(name = "dataVencimento", nullable = false, length = 10)
-    @NotBlank
+    @NotNull
     private LocalDateTime dataVencimento;
 
     @Column(name = "dataEmissao", nullable = false, length = 10)
-    @NotBlank
+    @NotNull
     private LocalDateTime dataEmissao;
+
+    @Column(name = "dataPagamento", nullable = true, length = 10)
+    private LocalDateTime dataPag;
 
     @Column(name = "descricaoPagar", length = 255)
     private String descricaoPagar;
-
-    @Column(name = "statusReceber", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private StatusDuplicata statusPagar;
 
     @Column(name = "usuario", nullable = false, length = 50)
     @NotBlank

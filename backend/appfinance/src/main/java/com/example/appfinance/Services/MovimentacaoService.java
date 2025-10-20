@@ -9,10 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.appfinance.Models.Conta;
 import com.example.appfinance.Models.Movimentacao;
-import com.example.appfinance.Models.ENUM.TipoDuplicata;
-import com.example.appfinance.Repository.ContaRepository;
 import com.example.appfinance.Repository.MovimentacaoRepository;
 
 @Service
@@ -59,7 +56,7 @@ public class MovimentacaoService {
         // }
 
         BigDecimal valorAntigo = movExistente.getValor();
-        boolean isEntradaAntigo = movExistente.getTipoDuplicata().equals(TipoDuplicata.RECEBER);
+        boolean isEntradaAntigo = Integer.valueOf(1).equals(movExistente.getTipoDuplicata());
         // contaService.atualizarSaldo(movExistente.getBanco().getIdBanco(), valorAntigo, !isEntradaAntigo);
 
         movExistente.setConta(mov.getConta());
@@ -85,7 +82,7 @@ public class MovimentacaoService {
                     .orElseThrow(() -> new RuntimeException("Movimentação não encontrada com ID: " + id));
 
             BigDecimal valor = movExistente.getValor();
-            boolean isEntrada = movExistente.getTipoDuplicata().equals(TipoDuplicata.RECEBER);
+            boolean isEntradaAntigo = Integer.valueOf(2).equals(movExistente.getTipoDuplicata());
 
             // contaService.atualizarSaldo(movExistente.getConta().getIdConta(), valor, !isEntrada);
 

@@ -1,12 +1,7 @@
 package com.example.appfinance.Models;
 
-import com.example.appfinance.Models.ENUM.TipoEmpresa;
-import com.example.appfinance.Models.ENUM.TipoPessoa;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -50,20 +45,27 @@ public class Empresa {
     @Size(min = 2, max = 100)
     private String nomeFantasia;
 
+    /*
+     * 0 - Cliente
+     * 1 - Fornecedor
+     * 2 - Ambos
+     */
     @Column(name = "tipoEmpresa", nullable = false)
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private TipoEmpresa tipoEmpresa;
+    private int tipoEmpresa;
 
-    @Column(name = "cpf_cpnj", length = 14, nullable = false, unique = true)
+    @Column(name = "cpf_cpnj", length = 20, nullable = false, unique = true)
     @NotBlank
     @Size(min = 14)
     private String cpfCnpj;
 
+    /*
+     * 0 - Física
+     * 1 - Jurídica
+     */
     @Column(name = "tipoPessoa", nullable = false)
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private TipoPessoa tipoPessoa;
+    private int tipoPessoa;
 
     @Column(name = "email", length = 100, nullable = false, unique = true)
     @NotBlank
@@ -95,6 +97,11 @@ public class Empresa {
     @NotBlank
     @Size(min = 5)
     private String cepEmpresa;
+
+    @Column(name = "cidade", length = 50, nullable = false)
+    @NotBlank
+    @Size(min = 3)
+    private String cidadeEmpresa;
 
     @Column(name = "estado", length = 60, nullable = false)
     @NotBlank

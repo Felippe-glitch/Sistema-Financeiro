@@ -6,7 +6,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.appfinance.Models.Conta;
 import com.example.appfinance.Models.Pagar;
 import com.example.appfinance.Repository.PagarRepository;
 
@@ -38,10 +37,10 @@ public class PagarService {
         newDuplicata.setDataVencimento(pagar.getDataVencimento());
         newDuplicata.setValorPagar(pagar.getValorPagar());
         newDuplicata.setDescricaoPagar(pagar.getDescricaoPagar());
-        newDuplicata.setStatusPagar(pagar.getStatusPagar());;
         newDuplicata.setEmpresa(pagar.getEmpresa());
         newDuplicata.setUsuario(pagar.getUsuario());
         newDuplicata.setConta(pagar.getConta());
+        newDuplicata.setDataPag(null);
 
         newDuplicata = pagarRepository.save(newDuplicata);
 

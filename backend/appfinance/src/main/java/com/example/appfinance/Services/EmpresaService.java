@@ -1,14 +1,11 @@
 package com.example.appfinance.Services;
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.appfinance.Models.Conta;
 import com.example.appfinance.Models.Empresa;
 import com.example.appfinance.Repository.EmpresaRepository;
 
@@ -44,6 +41,7 @@ public class EmpresaService {
         newEmpresa.setNomeFantasia(empresa.getNomeFantasia());
         newEmpresa.setTelefone(empresa.getTelefone());
         newEmpresa.setEmail(empresa.getEmail());
+        newEmpresa.setCidadeEmpresa(empresa.getCidadeEmpresa());
         newEmpresa.setRuaEmpresa(empresa.getRuaEmpresa());
         newEmpresa.setNumeroEmpresa(empresa.getNumeroEmpresa());
         newEmpresa.setBairroEmpresa(empresa.getBairroEmpresa());

@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.example.appfinance.Models.ENUM.FormaPagamento;
-import com.example.appfinance.Models.ENUM.TipoDuplicata;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,6 +31,9 @@ import lombok.Setter;
 public class Movimentacao {
     public static final String TABLE_NAME = "Movimentacao";
 
+    public interface CreateMovimentacao {}
+    public interface UpdateMovimentacao {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_movimentacao")
@@ -50,9 +52,12 @@ public class Movimentacao {
     @NotNull
     private BigDecimal valor;
 
+    /*
+     * 0 -> Pagar
+     * 1 -> Receber
+     */
     @Column(name = "tipo_duplicata", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TipoDuplicata TipoDuplicata;
+    private int tipoDuplicata;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "fkConta", referencedColumnName = "idConta", nullable = false)

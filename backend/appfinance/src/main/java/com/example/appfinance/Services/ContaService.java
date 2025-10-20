@@ -2,6 +2,7 @@ package com.example.appfinance.Services;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import com.example.appfinance.Repository.ContaRepository;
 
 @Service
 public class ContaService {
+    @Autowired
     private ContaRepository contaRepository;
 
     @Transactional
@@ -75,5 +77,10 @@ public class ContaService {
         Pageable pageable = PageRequest.of(page, pageSize);
 
         return contaRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public Conta getContaById(Long id){
+        return contaRepository.visualizarConta(id);
     }
 }

@@ -21,6 +21,9 @@ import lombok.Setter;
 public class Banco {
     public static final String TABLE_NAME = "Banco";
 
+    public interface CreateBanco{}
+    public interface UpdateBanco{}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idBanco")

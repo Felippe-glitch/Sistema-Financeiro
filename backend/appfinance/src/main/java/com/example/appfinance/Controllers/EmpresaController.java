@@ -2,6 +2,7 @@ package com.example.appfinance.Controllers;
 
 import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -27,11 +28,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 @Validated
 public class EmpresaController {
 
+    @Autowired
     private EmpresaService empresaService;
-
-    public EmpresaController(EmpresaService empresaService){
-        this.empresaService = empresaService;
-    }
 
     @PostMapping
     @Validated(CreateEmpresa.class)
@@ -43,7 +41,7 @@ public class EmpresaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Empresa>> listarEmpresas(
+    public ResponseEntity<Page<Empresa>> getAllEmpresas(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int pageSize) {
         return ResponseEntity.ok(empresaService.getEmpresas(page, pageSize));

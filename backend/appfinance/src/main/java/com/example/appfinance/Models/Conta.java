@@ -32,6 +32,9 @@ public class Conta {
 
     public static final String TABLE_NAME = "Conta";
 
+    public interface CreateConta{}
+    public interface UpdateConta{}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idConta")
@@ -52,7 +55,7 @@ public class Conta {
 
     @Column(name = "tipoConta", nullable = false)
     @Enumerated(EnumType.STRING)
-    @NotBlank
+    @NotNull
     private TipoConta tipoConta;
 
     @Column(name = "statusConta", nullable = false)
