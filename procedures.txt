@@ -1,0 +1,183 @@
+
+CREATE PROCEDURE visualizarConta
+	@id_conta bigint 
+AS BEGIN
+	SELECT id_conta , agencia , conta , dv_conta , saldo , 
+	tipo_conta, fk_banco, status_conta
+	From conta 
+	WHERE id_conta = @id_conta
+End;
+GO
+
+DROP PROCEDURE visualizarConta
+
+CREATE PROCEDURE visualizarBancos
+AS
+BEGIN 
+    SELECT B.nome_banco, C.agencia, C.conta, C.dv_conta, C.id_conta, C.saldo, C.status_conta, C.tipo_conta FROM banco AS B
+    INNER JOIN conta C ON B.id_banco = C.fk_banco
+END
+GO		
+
+
+
+CREATE PROCEDURE visualizarEmpresa 
+	@id_empresa bigint 
+AS 
+BEGIN 
+	SELECT 
+	id_empresa , cpf_cpnj, razao_social, tipo_empresa 
+	, tipo_pessoa , pais , cidade , estado
+	, cep , bairro , rua , 
+	numero , telefone , email 
+	FROM empresa 
+	WHERE id_empresa = @id_empresa 
+END
+GO
+
+
+
+
+
+
+
+CREATE PROCEDURE auditoriaDuplicatas
+	@NOME VARCHAR(50), @TIPO INT
+AS
+BEGIN 
+	IF @TIPO = 0
+		SELECT P.id_pagar AS ID,
+		P.data_emissao AS Data_Emissao,
+		P.data_vencimento AS Data_Vencimento,
+		P.descricao_pagar AS Descricao,
+		E.razao_social AS Nome_Empresa,
+		C.conta AS Num_Conta
+		FROM PAGAR P 
+		INNER JOIN empresa E ON P.fk_empresa = E.id_empresa
+		INNER JOIN conta C ON P.fk_conta = C.id_conta
+		WHERE P.usuario LIKE '%' + @NOME +'%'
+	ELSE IF @TIPO = 1
+		SELECT R.id_receber AS ID,
+		R.data_emissao AS Data_Emissao,
+		R.data_vencimento AS Data_Vencimento,
+		R.descricao_receber AS Descricao,
+		E.razao_social AS Nome_Empresa,
+		C.conta AS Num_Conta
+		FROM RECEBER R 
+		INNER JOIN empresa E ON R.fk_empresa = E.id_empresa
+		INNER JOIN conta C ON R.fk_conta = C.id_conta
+		WHERE R.usuario LIKE '%' + @NOME +'%'
+END 
+GO
+
+
+
+
+
+
+
+
+CREATE PROCEDURE extratoConta
+	@id_conta bigint 
+AS 
+BEGIN 
+	SELECT M.tipo_duplicata 
+	as Tipo,
+	C.conta as Numero_Conta,
+	B.nome_banco AS Nome_Banco,
+	SUM(CASE WHEN M.tipo_duplicata = 0 THEN M.valor_mov END) AS Total_Recebido ,
+	SUM(CASE WHEN M.tipo_duplicata = 1 THEN M.valor_mov END) AS Total_Pago,
+	C.saldo
+	FROM movimentacao M
+	INNER JOIN CONTA C ON M.FK_CONTA = C.ID_CONTA
+	INNER JOIN BANCO B ON C.fk_banco = B.id_banco
+	WHERE C.id_conta = @id_conta
+	GROUP BY M.tipo_duplicata, C.conta, B.nome_banco, C.saldo
+END
+go
+
+
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE extratoFornecedor @id_empresa bigint
+AS
+BEGIN 
+    SELECT  
+        usuario as Usuario, 
+        id_pagar as ID_Movimento, 
+        data_emissao as Data_Emissao, 
+        data_vencimento as Data_Vencimento, 
+        descricao_pagar as Descricao, 
+        valor_pagar as Valor, 
+        fk_empresa as ID_Empresa, 
+        fk_conta as FK_Banco
+    FROM pagar 
+    WHERE fk_empresa = @id_empresa 
+  
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE extratoCliente @id_empresa bigint
+AS
+BEGIN 
+    SELECT  
+        usuario as Usuario, 
+        id_receber as ID_Movimento, 
+        data_emissao as Data_Emissao, 
+        data_vencimento as Data_Vencimento, 
+        descricao_receber as Descricao, 
+        valor_receber as Valor, 
+        fk_empresa as ID_Empresa, 
+        fk_conta as FK_Banco
+    FROM receber
+    WHERE fk_empresa = @id_empresa 
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE extratoDiario
+AS
+BEGIN
+    SELECT 
+        'Pago' AS Tipo,  
+        SUM(valor_mov) AS Valor
+    FROM movimentacao 
+    WHERE CAST(data_registro_movimentacao AS DATE) = CAST(GETDATE() AS DATE) 
+      AND tipo_duplicata = 0
+
+    UNION ALL
+
+    SELECT 
+        'Recebido' AS Tipo,  
+        SUM(valor_mov) AS Valor
+    FROM movimentacao 
+    WHERE CAST(data_registro_movimentacao AS DATE) = CAST(GETDATE() AS DATE) 
+      AND tipo_duplicata = 1
+END
+go
