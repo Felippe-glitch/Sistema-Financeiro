@@ -338,3 +338,90 @@ END
 GO
 
 
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE getUsuario
+    @id_usuario bigint
+AS
+BEGIN
+
+    SELECT *
+    FROM usuario
+    WHERE id_usuario = @id_usuario;
+END;
+GO
+
+CREATE PROCEDURE getConta
+    @id_conta bigint
+AS
+BEGIN
+
+    SELECT *
+    FROM conta
+    WHERE id_conta = @id_conta;
+END;
+
+GO
+
+CREATE PROCEDURE getBanco
+    @id_banco bigint
+AS
+BEGIN
+
+    SELECT *
+    FROM banco
+    WHERE id_banco = @id_banco;
+END;
+GO
+
+CREATE PROCEDURE getReceber
+    @id_receber bigint
+AS
+BEGIN
+
+    SELECT *
+    FROM receber
+    WHERE id_receber = @id_receber;
+END;
+GO
+
+CREATE PROCEDURE getPagar
+    @id_pagar bigint
+AS
+BEGIN
+
+    SELECT *
+    FROM pagar
+    WHERE id_pagar = @id_pagar;
+END;
+GO
+
+CREATE PROCEDURE getMovimentacao
+    @id_movimentacao bigint
+AS
+BEGIN
+
+    SELECT *
+    FROM movimentacao
+    WHERE id_movimentacao = @id_movimentacao;
+END;
+GO
+
+CREATE PROCEDURE getEmpresa
+ @id_empresa  bigint
+AS BEGIN
+    SELECT	* 
+    FROM empresa
+    WHERE @id_empresa = id_empresa
+End
+GO
+
+
+
