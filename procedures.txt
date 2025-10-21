@@ -129,6 +129,44 @@ GO
 
 
 
+CREATE PROCEDURE extratoAmbos @id_empresa bigint
+AS
+BEGIN 
+    SELECT  
+        usuario, 
+        id_pagar, 
+        data_emissao, 
+        data_vencimento, 
+        descricao_pagar, 
+        valor_pagar, 
+        fk_empresa, 
+        fk_conta
+    FROM pagar 
+
+	UNION ALL
+
+	SELECT  
+        usuario as Usuario, 
+        id_receber as ID_Movimento, 
+        data_emissao as Data_Emissao, 
+        data_vencimento as Data_Vencimento, 
+        descricao_receber as Descricao, 
+        valor_receber as Valor, 
+        fk_empresa as ID_Empresa, 
+        fk_conta as FK_Banco
+    FROM receber
+
+	WHERE fk_empresa = @id_empresa 
+	
+  
+END
+GO
+
+
+
+
+
+
 
 
 
@@ -181,3 +219,4 @@ BEGIN
       AND tipo_duplicata = 1
 END
 go
+
