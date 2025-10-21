@@ -7,9 +7,9 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.4</version>
-		<relativePath /> 
+		<relativePath />
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>appfinance</groupId>
 	<artifactId>appfinance</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>appfinance</name>
