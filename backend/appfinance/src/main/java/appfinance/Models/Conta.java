@@ -52,7 +52,7 @@ public class Conta {
     @PositiveOrZero
     private BigDecimal saldo = BigDecimal.ZERO;
 
-    @Column(name = "tipoConta", nullable = false)
+    @Column(name = "tipoConta", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     @NotNull
     private TipoConta tipoConta;

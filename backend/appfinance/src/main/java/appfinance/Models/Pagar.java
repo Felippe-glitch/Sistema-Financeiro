@@ -3,8 +3,11 @@ package appfinance.Models;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import appfinance.Models.ENUM.FormaPagamento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,6 +45,11 @@ public class Pagar {
     @Column(name = "dataVencimento", nullable = false, length = 10)
     @NotNull
     private LocalDateTime dataVencimento;
+
+    @Column(name = "forma_pagamento", nullable = false, length = 20)
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private FormaPagamento formaPagamento;
 
     @Column(name = "dataEmissao", nullable = false, length = 10)
     @NotNull
