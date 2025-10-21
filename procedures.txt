@@ -220,3 +220,121 @@ BEGIN
 END
 go
 
+
+
+
+
+
+
+
+
+CREATE TRIGGER tr_gerarMovimentacaoPagar
+ON pagar
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO movimentacao (
+        data_registro_movimentacao,
+        forma_pagamento,
+        tipo_duplicata,
+        usuario_cad,
+        valor_mov,
+        fk_conta
+    )
+    SELECT 
+        GETDATE(),
+        i.forma_pagamento,
+        0,  
+        i.usuario,
+        i.valor_pagar,
+        i.fk_conta
+    FROM inserted i
+    INNER JOIN deleted d ON i.id_pagar = d.id_pagar
+    WHERE 
+        i.data_pagamento IS NOT NULL              
+        AND (d.data_pagamento IS NULL              
+             OR d.data_pagamento <> i.data_pagamento) 
+        AND NOT EXISTS (                         
+            SELECT 1 
+            FROM movimentacao m
+            WHERE 
+                m.tipo_duplicata = 0
+                AND m.valor_mov = i.valor_pagar
+                AND m.fk_conta = i.fk_conta
+                AND CONVERT(date, m.data_registro_movimentacao) = CONVERT(date, GETDATE())
+        );
+END
+GO
+
+
+
+
+
+
+CREATE TRIGGER tr_gerarMovimentacaoReceber
+ON receber
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO movimentacao (
+        data_registro_movimentacao,
+        forma_pagamento,
+        tipo_duplicata,
+        usuario_cad,
+        valor_mov,
+        fk_conta
+    )
+    SELECT 
+        GETDATE(),
+        i.forma_pagamento,
+        1,  
+        i.usuario,
+        i.valor_receber,
+        i.fk_conta
+    FROM inserted i
+    INNER JOIN deleted d ON i.id_receber = d.id_receber
+    WHERE 
+        i.data_recebimento IS NOT NULL
+        AND (d.data_recebimento IS NULL 
+             OR d.data_recebimento <> i.data_recebimento)
+        AND NOT EXISTS (
+            SELECT 1 
+            FROM movimentacao m
+            WHERE 
+                m.tipo_duplicata = 1
+                AND m.valor_mov = i.valor_receber
+                AND m.fk_conta = i.fk_conta
+                AND CONVERT(date, m.data_registro_movimentacao) = CONVERT(date, GETDATE())
+        );
+END
+GO
+
+
+
+
+
+
+CREATE TRIGGER tr_atualizaSaldo
+ON movimentacao
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE c
+    SET c.saldo =
+        CASE 
+            WHEN i.tipo_duplicata = 0 THEN c.saldo - i.valor_mov  
+            WHEN i.tipo_duplicata = 1 THEN c.saldo + i.valor_mov  
+            ELSE c.saldo
+        END
+    FROM conta c
+    INNER JOIN inserted i ON c.id_conta = i.fk_conta;
+END
+GO
+
+
