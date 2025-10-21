@@ -3,7 +3,7 @@ package appfinance.Repository.Custom;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import appfinance.DTO.ExtratoBancarioDTO;
+import appfinance.DTO.ExtratoContaDTO;
 
 @Repository
 public class ContaRepositoryCustom {
@@ -14,11 +14,11 @@ public class ContaRepositoryCustom {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public ExtratoBancarioDTO extratoContaById(Long idConta) {
+    public ExtratoContaDTO extratoContaById(Long idConta) {
         String sql = "EXEC extratoConta @id_conta = ?";
         return jdbcTemplate.queryForObject(
         sql,
-        (rs, rowNum) -> new ExtratoBancarioDTO(
+        (rs, rowNum) -> new ExtratoContaDTO(
             rs.getString("Numero_Conta"),
             rs.getString("Nome_Banco"),
             rs.getBigDecimal("Total_Pago"),

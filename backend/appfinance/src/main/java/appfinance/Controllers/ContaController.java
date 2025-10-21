@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import appfinance.DTO.ExtratoContaDTO;
 import appfinance.Models.Conta;
 import appfinance.Models.Conta.CreateConta;
 import appfinance.Models.Conta.UpdateConta;
@@ -52,11 +53,19 @@ public class ContaController {
     }
 
     @GetMapping
+    @Validated
     public ResponseEntity<Page<Conta>> getAllContas(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int pageSize) {
         return ResponseEntity.ok(contaService.getContas(page, pageSize));
     }
+
+    @GetMapping("/extrato/{id}")
+    @Validated
+    public ResponseEntity<ExtratoContaDTO> getExtratoConta(@PathVariable Long id) {
+        return ResponseEntity.ok(contaService.getExtratoConta(id));
+    }
+    
 
     @PutMapping("/{id}")
     @Validated(UpdateConta.class)

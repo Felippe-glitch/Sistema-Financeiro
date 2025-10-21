@@ -1,6 +1,7 @@
 package appfinance.Services;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,8 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import appfinance.DTO.ExtratoDiarioDTO;
 import appfinance.Models.Movimentacao;
 import appfinance.Repository.MovimentacaoRepository;
+import appfinance.Repository.Custom.ExtratoRepositoryCustom;
 
 @Service
 public class MovimentacaoService {
@@ -18,6 +21,8 @@ public class MovimentacaoService {
     private MovimentacaoRepository movimentacaoRepository;
     @Autowired
     private ContaService contaService;
+    @Autowired
+    private ExtratoRepositoryCustom extratoRepositoryCustom;
 
     // CRUD BÁSICO PARA MOVIMENTAÇÃO
 
@@ -100,5 +105,10 @@ public class MovimentacaoService {
         Pageable pageable = PageRequest.of(page, pageSize);
 
         return movimentacaoRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public List<ExtratoDiarioDTO> getExtratoDiario(){
+        return extratoRepositoryCustom.extratoDiario();
     }
 }

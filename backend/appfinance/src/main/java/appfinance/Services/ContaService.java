@@ -9,13 +9,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import appfinance.DTO.ExtratoContaDTO;
 import appfinance.Models.Conta;
 import appfinance.Repository.ContaRepository;
+import appfinance.Repository.Custom.ContaRepositoryCustom;
 
 @Service
 public class ContaService {
     @Autowired
     private ContaRepository contaRepository;
+    @Autowired
+    private ContaRepositoryCustom contarepositoyCustom;
 
     @Transactional
     public Conta atualizarSaldo(Long idConta, BigDecimal valor, boolean isEntrada) {
@@ -32,6 +36,11 @@ public class ContaService {
         }
 
         return contaRepository.save(conta);
+    }
+
+    @Transactional
+    public ExtratoContaDTO getExtratoConta(Long id){
+        return contarepositoyCustom.extratoContaById(id);
     }
 
     // CRUD PARA CONTA

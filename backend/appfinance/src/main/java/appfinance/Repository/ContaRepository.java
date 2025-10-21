@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
-import appfinance.DTO.ExtratoBancarioDTO;
+import appfinance.DTO.ExtratoContaDTO;
 import appfinance.Models.Conta;
 
 public interface ContaRepository extends JpaRepository<Conta, Long>{
@@ -22,6 +22,6 @@ public interface ContaRepository extends JpaRepository<Conta, Long>{
     // PROCEDURE PARA EXTRATO DE CONTA
     // Trocar para interface de extrato
     @Procedure(name = "extratoConta")
-    ExtratoBancarioDTO extratoConaById(@Param("id_conta") Long contaId);
+    ExtratoContaDTO extratoConaById(@Param("id_conta") Long contaId);
 
 }

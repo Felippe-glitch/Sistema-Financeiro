@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExtratoBancarioDTO {
+public class ExtratoContaDTO {
     private String conta;
     private String nomeBanco;
     private BigDecimal totalPagar;
