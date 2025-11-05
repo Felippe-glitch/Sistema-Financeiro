@@ -189,6 +189,35 @@ go
 
 
 
+CREATE PROCEDURE extratoPeriodo
+    @DataInicio DATE,
+    @DataFim DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        'Pago' AS Tipo,  
+        SUM(valor_mov) AS Valor
+    FROM movimentacao 
+    WHERE CAST(data_registro_movimentacao AS DATE) BETWEEN @DataInicio AND @DataFim
+      AND tipo_duplicata = 0
+
+    UNION ALL
+
+    SELECT 
+        'Recebido' AS Tipo,  
+        SUM(valor_mov) AS Valor
+    FROM movimentacao 
+    WHERE CAST(data_registro_movimentacao AS DATE) BETWEEN @DataInicio AND @DataFim
+      AND tipo_duplicata = 1
+END
+GO
+
+
+
+
+
 
 
 
