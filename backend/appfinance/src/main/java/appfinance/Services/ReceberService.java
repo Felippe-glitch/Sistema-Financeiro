@@ -39,7 +39,7 @@ public class ReceberService {
         newDuplicata.setEmpresa(receber.getEmpresa());
         newDuplicata.setUsuario(receber.getUsuario());
         newDuplicata.setConta(receber.getConta());
-        newDuplicata.setDataRec(null);
+        newDuplicata.setDataRec(receber.getDataRec());
 
         newDuplicata = receberRepository.save(newDuplicata);
 

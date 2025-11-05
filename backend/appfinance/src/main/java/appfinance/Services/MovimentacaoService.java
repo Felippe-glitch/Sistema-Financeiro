@@ -1,6 +1,6 @@
 package appfinance.Services;
 
-import java.math.BigDecimal;
+// import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ import appfinance.Repository.Custom.ExtratoRepositoryCustom;
 public class MovimentacaoService {
     @Autowired
     private MovimentacaoRepository movimentacaoRepository;
-    @Autowired
-    private ContaService contaService;
+    // @Autowired
+    // private ContaService contaService;
     @Autowired
     private ExtratoRepositoryCustom extratoRepositoryCustom;
 
@@ -60,8 +60,8 @@ public class MovimentacaoService {
         //     }
         // }
 
-        BigDecimal valorAntigo = movExistente.getValor();
-        boolean isEntradaAntigo = Integer.valueOf(1).equals(movExistente.getTipoDuplicata());
+        // BigDecimal valorAntigo = movExistente.getValor();
+        // boolean isEntradaAntigo = Integer.valueOf(1).equals(movExistente.getTipoDuplicata());
         // contaService.atualizarSaldo(movExistente.getBanco().getIdBanco(), valorAntigo, !isEntradaAntigo);
 
         movExistente.setConta(mov.getConta());
@@ -86,8 +86,8 @@ public class MovimentacaoService {
             Movimentacao movExistente = movimentacaoRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Movimentação não encontrada com ID: " + id));
 
-            BigDecimal valor = movExistente.getValor();
-            boolean isEntradaAntigo = Integer.valueOf(2).equals(movExistente.getTipoDuplicata());
+            // BigDecimal valor = movExistente.getValor();
+            // boolean isEntradaAntigo = Integer.valueOf(2).equals(movExistente.getTipoDuplicata());
 
             // contaService.atualizarSaldo(movExistente.getConta().getIdConta(), valor, !isEntrada);
 

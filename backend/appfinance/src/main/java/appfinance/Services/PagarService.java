@@ -39,7 +39,7 @@ public class PagarService {
         newDuplicata.setEmpresa(pagar.getEmpresa());
         newDuplicata.setUsuario(pagar.getUsuario());
         newDuplicata.setConta(pagar.getConta());
-        newDuplicata.setDataPag(null);
+        newDuplicata.setDataPag(pagar.getDataPag());
 
         newDuplicata = pagarRepository.save(newDuplicata);
 
