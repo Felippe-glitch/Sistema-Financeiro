@@ -1,23 +1,26 @@
 package appfinance.Controllers;
 
 import java.net.URI;
+import java.security.Timestamp;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import appfinance.DTO.ExtratoDiarioDTO;
+import appfinance.DTO.ExtratoPeriodoDTO;
 import appfinance.Models.Movimentacao;
 import appfinance.Models.Movimentacao.CreateMovimentacao;
 import appfinance.Models.Movimentacao.UpdateMovimentacao;
 import appfinance.Services.MovimentacaoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/movimentacao")
@@ -65,11 +68,18 @@ public class MovimentacaoController {
         return ResponseEntity.ok(movimentacaoService.getExtratoDiario());
     }
 
+    @GetMapping("/extrato/periodo")
+    public ResponseEntity<List<ExtratoPeriodoDTO>> getExtratoPeriodo(
+            @RequestParam("dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime dataInicio,
+            @RequestParam("dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime dataFim) {
+
+        return ResponseEntity.ok(movimentacaoService.getExtratoPeriodo(dataInicio, dataFim));
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Movimentacao> getMovimentacao(@PathVariable Long id){
+    public ResponseEntity<Movimentacao> getMovimentacao(@PathVariable Long id) {
         return ResponseEntity.ok(movimentacaoService.getMovimentacao(id));
     }
-    
 
     @PutMapping("/{id}")
     @Validated(UpdateMovimentacao.class)
@@ -85,6 +95,5 @@ public class MovimentacaoController {
         movimentacaoService.deleteMovimentacao(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

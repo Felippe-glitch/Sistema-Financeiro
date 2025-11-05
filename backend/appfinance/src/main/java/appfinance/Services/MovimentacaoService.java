@@ -1,5 +1,8 @@
 package appfinance.Services;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 // import java.math.BigDecimal;
 import java.util.List;
 
@@ -11,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import appfinance.DTO.ExtratoDiarioDTO;
+import appfinance.DTO.ExtratoPeriodoDTO;
 import appfinance.Models.Movimentacao;
 import appfinance.Repository.MovimentacaoRepository;
+import appfinance.Repository.Custom.ExtratoPeriodoRepositoryCustom;
 import appfinance.Repository.Custom.ExtratoRepositoryCustom;
 
 @Service
@@ -23,6 +28,9 @@ public class MovimentacaoService {
     // private ContaService contaService;
     @Autowired
     private ExtratoRepositoryCustom extratoRepositoryCustom;
+
+    @Autowired
+    private ExtratoPeriodoRepositoryCustom extratoPeriodoRepositoryCustom;
 
     // CRUD BÁSICO PARA MOVIMENTAÇÃO
 
@@ -115,5 +123,11 @@ public class MovimentacaoService {
     @Transactional
     public Movimentacao getMovimentacao(Long id){
         return movimentacaoRepository.getMovimentacao(id);
+    }
+
+    @Transactional
+    public List<ExtratoPeriodoDTO> getExtratoPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim){
+        
+        return extratoPeriodoRepositoryCustom.extratoPeriodo(dataInicio, dataFim);
     }
 }

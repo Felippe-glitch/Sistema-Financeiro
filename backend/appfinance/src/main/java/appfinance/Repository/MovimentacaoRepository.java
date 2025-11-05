@@ -10,5 +10,5 @@ import appfinance.Models.Movimentacao;
 @Repository
 public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long> {
     @Procedure(name = "getMovimentacao")
-    public Movimentacao getMovimentacao(@Param("id_movimentacao") Long id_movimentacao);
+    Movimentacao getMovimentacao(@Param("id_movimentacao") Long id_movimentacao);
 }
