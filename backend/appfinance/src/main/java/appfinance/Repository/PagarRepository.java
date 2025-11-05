@@ -22,4 +22,7 @@ public interface PagarRepository extends JpaRepository<Pagar, Long> {
      */
     @Procedure(name = "auditoriaDuplicatas")
     List<Pagar> auditoriaPagarPorUsuario(@Param("NOME") String nome, @Param("TIPO") int tipo);
+
+    @Procedure
+    Pagar getPagar(@Param("id_pagar") Long id_pagar);
 }

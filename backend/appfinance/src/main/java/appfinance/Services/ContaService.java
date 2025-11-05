@@ -90,6 +90,6 @@ public class ContaService {
 
     @Transactional
     public Conta getContaById(Long id){
-        return contaRepository.visualizarConta(id);
+        return contaRepository.getConta(id);
     }
 }

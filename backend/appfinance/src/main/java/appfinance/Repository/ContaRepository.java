@@ -16,8 +16,8 @@ public interface ContaRepository extends JpaRepository<Conta, Long>{
      * ID, Agencia, Num_conta, DV, Saldo, Tipo_Conta, fk_banco
      * 
      */
-    @Procedure(name = "visualizarConta")
-    Conta visualizarConta(@Param("id_conta") Long id_conta);
+    @Procedure(name = "getConta")
+    Conta getConta(@Param("id_conta") Long id_conta);
 
     // PROCEDURE PARA EXTRATO DE CONTA
     // Trocar para interface de extrato

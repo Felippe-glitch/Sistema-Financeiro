@@ -64,6 +64,11 @@ public class MovimentacaoController {
     public ResponseEntity<List<ExtratoDiarioDTO>> getExtratoDiario() {
         return ResponseEntity.ok(movimentacaoService.getExtratoDiario());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Movimentacao> getMovimentacao(@PathVariable Long id){
+        return ResponseEntity.ok(movimentacaoService.getMovimentacao(id));
+    }
     
 
     @PutMapping("/{id}")

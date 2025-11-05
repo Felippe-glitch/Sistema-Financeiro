@@ -54,4 +54,9 @@ public class BancoService {
 
         return bancoRepository.findAll(pageable);
     }
+
+    @Transactional
+    public Banco getBanco(Long id){
+        return bancoRepository.getBanco(id);
+    }
 }

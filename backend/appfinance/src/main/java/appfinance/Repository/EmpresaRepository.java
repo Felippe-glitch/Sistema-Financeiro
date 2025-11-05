@@ -25,8 +25,8 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
      * Numero, Telefone, Telefone, Email
      * 
      */
-    @Procedure(name = "visualizarEmpresa")
-    Empresa empresaById(@Param("id_empresa") Long empId);
+    @Procedure(name = "getEmpresa")
+    Empresa getEmpresa(@Param("id_empresa") Long id_empresa);
 
     @Procedure(name = "extratoFornecedor")
     List<Pagar> pagarByFornecedor(@Param("id_empresa") Long idEmpresa);

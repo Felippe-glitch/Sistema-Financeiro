@@ -64,4 +64,9 @@ public class PagarService {
 
         return pagarRepository.findAll(pageable);
     }
+
+    @Transactional
+    public Pagar getPagar(Long id){
+        return pagarRepository.getPagar(id);
+    }
 }

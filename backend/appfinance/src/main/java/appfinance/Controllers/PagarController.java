@@ -60,6 +60,11 @@ public class PagarController {
         return ResponseEntity.ok(pagarService.getContasPagar(page, pageSize));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Pagar> getPagar(@PathVariable Long id){
+        return ResponseEntity.ok(pagarService.getPagar(id));
+    }
+
     @PutMapping("/{id}")
     @Validated(UpdatePagar.class)
     public ResponseEntity<Void> putPagar(@PathVariable Long id, @RequestBody Pagar newPagar) {

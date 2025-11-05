@@ -61,6 +61,11 @@ public class ReceberController {
         return ResponseEntity.ok(receberService.getContasReceber(page, pageSize));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Receber> getReceber(@PathVariable Long id){
+        return ResponseEntity.ok(receberService.getReceber(id));
+    }
+
     @PutMapping("/{id}")
     @Validated(UpdateReceber.class)
     public ResponseEntity<Void> putReceber(@PathVariable Long id, @RequestBody Receber newReceber) {

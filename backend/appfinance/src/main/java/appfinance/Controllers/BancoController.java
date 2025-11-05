@@ -52,6 +52,12 @@ public class BancoController {
         return ResponseEntity.ok(bancoService.getBancos(page, pageSize));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Banco> getBanco(@PathVariable Long id) {
+        return ResponseEntity.ok(bancoService.getBanco(id));
+    }
+    
+
     @PutMapping("/{id}")
     @Validated(UpdateBanco.class)
     public ResponseEntity<Void> putBanco(@PathVariable Long id, @RequestBody Banco newBanco) {

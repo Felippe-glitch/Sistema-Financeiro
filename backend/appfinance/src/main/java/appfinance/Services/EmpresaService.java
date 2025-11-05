@@ -30,6 +30,11 @@ public class EmpresaService {
     }
 
     @Transactional
+    public Empresa getEmpresa(Long id){
+        return empresaRepository.getEmpresa(id);
+    }
+
+    @Transactional
     public Empresa updateEmpresa(Empresa empresa) {
         Empresa newEmpresa = empresaRepository.findById(empresa.getIdEmpresa())
                 .orElseThrow(() -> new RuntimeException("Empresa não encontrada" + empresa.getIdEmpresa()));

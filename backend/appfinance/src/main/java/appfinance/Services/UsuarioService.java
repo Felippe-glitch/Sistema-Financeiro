@@ -59,8 +59,9 @@ public class UsuarioService {
         usuarioRepository.delete(usuario);
     }
 
+    @Transactional
     public Usuario getUsuario(Long id) {
-        Optional<Usuario> usuario = this.usuarioRepository.findById(id);
+        Optional<Usuario> usuario = usuarioRepository.getUsuario(id);
         return usuario.orElseThrow(() -> new RuntimeException(
                 "Usuário não encontrado! id: " + id));
     }

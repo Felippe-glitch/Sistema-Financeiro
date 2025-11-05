@@ -111,4 +111,9 @@ public class MovimentacaoService {
     public List<ExtratoDiarioDTO> getExtratoDiario(){
         return extratoRepositoryCustom.extratoDiario();
     }
+
+    @Transactional
+    public Movimentacao getMovimentacao(Long id){
+        return movimentacaoRepository.getMovimentacao(id);
+    }
 }

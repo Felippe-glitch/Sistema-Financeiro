@@ -64,4 +64,9 @@ public class ReceberService {
 
         return receberRepository.findAll(pageable);
     }
+
+    @Transactional
+    public Receber getReceber(Long id){
+        return receberRepository.getReceber(id);
+    }
 }

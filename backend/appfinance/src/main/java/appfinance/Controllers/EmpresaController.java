@@ -48,6 +48,11 @@ public class EmpresaController {
         return ResponseEntity.ok(empresaService.getEmpresas(page, pageSize));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Empresa> getEmpresa(@PathVariable Long id){
+        return ResponseEntity.ok(empresaService.getEmpresa(id));
+    }
+
     @PutMapping("/{id}")
     @Validated(UpdateEmpresa.class)
     public ResponseEntity<Void> putEmpresa(@PathVariable Long id, @RequestBody Empresa newEmpresa) {
