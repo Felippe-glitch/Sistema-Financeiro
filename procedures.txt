@@ -219,7 +219,7 @@ GO
 
 CREATE TRIGGER tr_gerarMovimentacaoPagar 
 ON pagar 
-AFTER UPDATE 
+AFTER UPDATE, INSERT
 AS 
 BEGIN 
     DECLARE @FPAG VARCHAR(20);
@@ -264,7 +264,7 @@ GO
 
 CREATE TRIGGER tr_gerarMovimentacaoReceber 
 ON receber 
-AFTER UPDATE 
+AFTER UPDATE, INSERT
 AS 
 BEGIN 
     DECLARE @FPAG VARCHAR(20);
@@ -412,6 +412,7 @@ AS BEGIN
     WHERE @id_empresa = id_empresa
 End
 GO
+
 
 
 
