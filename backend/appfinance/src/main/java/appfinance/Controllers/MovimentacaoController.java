@@ -1,9 +1,6 @@
 package appfinance.Controllers;
 
 import java.net.URI;
-import java.security.Timestamp;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,6 +17,8 @@ import appfinance.DTO.ExtratoPeriodoDTO;
 import appfinance.Models.Movimentacao;
 import appfinance.Models.Movimentacao.CreateMovimentacao;
 import appfinance.Models.Movimentacao.UpdateMovimentacao;
+import appfinance.Models.Pagar;
+import appfinance.Models.Receber;
 import appfinance.Services.MovimentacaoService;
 
 @RestController
@@ -74,6 +73,18 @@ public class MovimentacaoController {
             @RequestParam("dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime dataFim) {
 
         return ResponseEntity.ok(movimentacaoService.getExtratoPeriodo(dataInicio, dataFim));
+    }
+
+    @GetMapping("/auditoria/pagar")
+    public ResponseEntity<List<Pagar>> getAuditoriaPagar(
+            @RequestParam("usuario") String usuario) {
+        return ResponseEntity.ok(movimentacaoService.getAuditoriaPagar(usuario));
+    }
+
+    @GetMapping("/auditoria/receber")
+    public ResponseEntity<List<Receber>> getAuditoriaReceber(
+            @RequestParam("usuario") String usuario) {
+        return ResponseEntity.ok(movimentacaoService.getAuditoriaReceber(usuario));
     }
 
     @GetMapping("/{id}")

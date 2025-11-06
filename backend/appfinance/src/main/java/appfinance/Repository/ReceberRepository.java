@@ -21,8 +21,10 @@ public interface ReceberRepository extends JpaRepository<Receber, Long>{
      * 
      */
     @Procedure(name = "auditoriaDuplicatas")
-    List<Receber> auditoriaReceberPorUsuario(@Param("NOME") String nome, @Param("TIPO") int tipo);
+    List<Receber> auditoriaDuplicatas(@Param("NOME") String nome, @Param("TIPO") int tipo);
 
     @Procedure(name = "getReceber")
     Receber getReceber(@Param("id_receber") Long id_receber);
+
+
 }

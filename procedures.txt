@@ -11,27 +11,23 @@ CREATE PROCEDURE auditoriaDuplicatas
 AS
 BEGIN 
 	IF @TIPO = 0
-		SELECT P.id_pagar AS ID,
-		P.data_emissao AS Data_Emissao,
-		P.data_vencimento AS Data_Vencimento,
-		P.descricao_pagar AS Descricao,
-		E.razao_social AS Nome_Empresa,
-		C.conta AS Num_Conta
-		FROM PAGAR P 
-		INNER JOIN empresa E ON P.fk_empresa = E.id_empresa
-		INNER JOIN conta C ON P.fk_conta = C.id_conta
-		WHERE P.usuario LIKE '%' + @NOME +'%'
+		SELECT id_pagar,
+		data_emissao,
+		data_vencimento,
+		descricao_pagar,
+		fk_empresa,
+		fk_conta
+		FROM PAGAR 
+		WHERE usuario LIKE '%' + @NOME +'%'
 	ELSE IF @TIPO = 1
-		SELECT R.id_receber AS ID,
-		R.data_emissao AS Data_Emissao,
-		R.data_vencimento AS Data_Vencimento,
-		R.descricao_receber AS Descricao,
-		E.razao_social AS Nome_Empresa,
-		C.conta AS Num_Conta
-		FROM RECEBER R 
-		INNER JOIN empresa E ON R.fk_empresa = E.id_empresa
-		INNER JOIN conta C ON R.fk_conta = C.id_conta
-		WHERE R.usuario LIKE '%' + @NOME +'%'
+		SELECT id_receber,
+		data_emissao,
+		data_vencimento,
+		descricao_receber,
+		fk_empresa,
+		fk_conta
+		FROM RECEBER 
+		WHERE usuario LIKE '%' + @NOME +'%'
 END 
 GO
 

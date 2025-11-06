@@ -1,7 +1,5 @@
 package appfinance.Services;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 // import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import appfinance.DTO.ExtratoDiarioDTO;
 import appfinance.DTO.ExtratoPeriodoDTO;
 import appfinance.Models.Movimentacao;
+import appfinance.Models.Pagar;
+import appfinance.Models.Receber;
 import appfinance.Repository.MovimentacaoRepository;
+import appfinance.Repository.PagarRepository;
+import appfinance.Repository.ReceberRepository;
 import appfinance.Repository.Custom.ExtratoPeriodoRepositoryCustom;
 import appfinance.Repository.Custom.ExtratoRepositoryCustom;
 
@@ -30,7 +32,14 @@ public class MovimentacaoService {
     private ExtratoRepositoryCustom extratoRepositoryCustom;
 
     @Autowired
+    private ReceberRepository receberRepository;
+
+    @Autowired
     private ExtratoPeriodoRepositoryCustom extratoPeriodoRepositoryCustom;
+
+    @Autowired
+    private PagarRepository pagarRepository;
+
 
     // CRUD BÁSICO PARA MOVIMENTAÇÃO
 
@@ -129,5 +138,16 @@ public class MovimentacaoService {
     public List<ExtratoPeriodoDTO> getExtratoPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim){
         
         return extratoPeriodoRepositoryCustom.extratoPeriodo(dataInicio, dataFim);
+    }
+
+    @Transactional
+    public List<Receber> getAuditoriaReceber(String usuario){
+        return receberRepository.auditoriaDuplicatas(usuario, 1);
+    }
+
+    
+    @Transactional
+    public List<Pagar> getAuditoriaPagar(String usuario){
+        return pagarRepository.auditoriaDuplicatas(usuario, 0);
     }
 }
