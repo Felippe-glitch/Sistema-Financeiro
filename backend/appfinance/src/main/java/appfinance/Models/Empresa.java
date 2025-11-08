@@ -56,7 +56,7 @@ public class Empresa {
 
     @Column(name = "cpf_cpnj", length = 20, nullable = false, unique = true)
     @NotBlank
-    @Size(min = 14)
+    @Size(min = 11)
     private String cpfCnpj;
 
     /*
@@ -69,7 +69,7 @@ public class Empresa {
 
     @Column(name = "email", length = 100, nullable = false, unique = true)
     @NotBlank
-    @Size(min = 10, max = 60)
+    @Size(min = 5, max = 60)
     @Email
     private String email;
 

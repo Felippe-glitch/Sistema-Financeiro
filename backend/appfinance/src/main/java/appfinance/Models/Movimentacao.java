@@ -57,6 +57,9 @@ public class Movimentacao {
      */
     @Column(name = "tipo_duplicata", nullable = false)
     private int tipoDuplicata;
+    
+    @Column(name = "descricao", length = 200)
+    private String descricao;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "fkConta", referencedColumnName = "idConta", nullable = false)
