@@ -65,4 +65,8 @@ public class Movimentacao {
     @Column(name = "usuario_cad", nullable = false)
     @NotBlank
     private String usuario;
+
+    @Column(name = "descricao", nullable = true)
+    @NotBlank
+    private String descricao;
 }

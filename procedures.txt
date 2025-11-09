@@ -70,17 +70,16 @@ CREATE PROCEDURE extratoFornecedor @id_empresa bigint
 AS
 BEGIN 
     SELECT  
-        usuario as Usuario, 
-        id_pagar as ID_Movimento, 
-        data_emissao as Data_Emissao, 
-        data_vencimento as Data_Vencimento, 
-        descricao_pagar as Descricao, 
-        valor_pagar as Valor, 
-        fk_empresa as ID_Empresa, 
-        fk_conta as FK_Banco
+        usuario, 
+        id_pagar, 
+        data_emissao, 
+        data_vencimento, 
+        descricao_pagar, 
+        valor_pagar, 
+        fk_empresa, 
+        fk_conta
     FROM pagar 
     WHERE fk_empresa = @id_empresa 
-  
 END
 GO
 
@@ -106,14 +105,14 @@ BEGIN
 	UNION ALL
 
 	SELECT  
-        usuario as Usuario, 
-        id_receber as ID_Movimento, 
-        data_emissao as Data_Emissao, 
-        data_vencimento as Data_Vencimento, 
-        descricao_receber as Descricao, 
-        valor_receber as Valor, 
-        fk_empresa as ID_Empresa, 
-        fk_conta as FK_Banco
+        usuario, 
+        id_receber, 
+        data_emissao, 
+        data_vencimento , 
+        descricao_receber, 
+        valor_receber, 
+        fk_empresa, 
+        fk_conta
     FROM receber
 
 	WHERE fk_empresa = @id_empresa 
@@ -136,14 +135,14 @@ CREATE PROCEDURE extratoCliente @id_empresa bigint
 AS
 BEGIN 
     SELECT  
-        usuario as Usuario, 
-        id_receber as ID_Movimento, 
-        data_emissao as Data_Emissao, 
-        data_vencimento as Data_Vencimento, 
-        descricao_receber as Descricao, 
-        valor_receber as Valor, 
-        fk_empresa as ID_Empresa, 
-        fk_conta as FK_Banco
+        usuario, 
+        id_receber, 
+        data_emissao, 
+        data_vencimento, 
+        descricao_receber, 
+        valor_receber, 
+        fk_empresa, 
+        fk_conta
     FROM receber
     WHERE fk_empresa = @id_empresa 
 END

@@ -87,6 +87,7 @@ public class MovimentacaoService {
         movExistente.setFormaPagamento(mov.getFormaPagamento());
         movExistente.setValor(mov.getValor());
         movExistente.setDataRegistroMovimentacao(mov.getDataRegistroMovimentacao());
+        movExistente.setDescricao(mov.getDescricao());
 
         Movimentacao movAtualizada = movimentacaoRepository.save(movExistente);
 
