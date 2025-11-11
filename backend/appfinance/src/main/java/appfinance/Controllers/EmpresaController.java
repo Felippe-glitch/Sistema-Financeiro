@@ -1,6 +1,7 @@
 package appfinance.Controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import appfinance.Models.Empresa;
 import appfinance.Models.Empresa.CreateEmpresa;
 import appfinance.Models.Empresa.UpdateEmpresa;
+import appfinance.Models.Receber;
 import appfinance.Services.EmpresaService;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +54,12 @@ public class EmpresaController {
     public ResponseEntity<Empresa> getEmpresa(@PathVariable Long id){
         return ResponseEntity.ok(empresaService.getEmpresa(id));
     }
+
+    @GetMapping("/extrato/cliente")
+    public ResponseEntity<List<Receber>> getMethodName(@RequestParam Long id) {
+        return ResponseEntity.ok(empresaService.getExtratoCliente(id));
+    }
+    
 
     @PutMapping("/{id}")
     @Validated(UpdateEmpresa.class)

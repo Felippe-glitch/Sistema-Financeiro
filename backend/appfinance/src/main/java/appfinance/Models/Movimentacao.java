@@ -67,6 +67,5 @@ public class Movimentacao {
     private String usuario;
 
     @Column(name = "descricao", nullable = true)
-    @NotBlank
     private String descricao;
 }

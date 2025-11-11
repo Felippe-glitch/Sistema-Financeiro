@@ -1,5 +1,7 @@
 package appfinance.Services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import appfinance.Models.Empresa;
+import appfinance.Models.Receber;
 import appfinance.Repository.EmpresaRepository;
 
 @Service
@@ -73,5 +76,10 @@ public class EmpresaService {
         Pageable pageable = PageRequest.of(page, pageSize);
 
         return empresaRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public List<Receber> getExtratoCliente(Long id){
+        return empresaRepository.receberByCliente((id));
     }
 }
