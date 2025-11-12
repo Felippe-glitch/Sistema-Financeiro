@@ -75,23 +75,6 @@ public class MovimentacaoController {
         return ResponseEntity.ok(movimentacaoService.getExtratoPeriodo(dataInicio, dataFim));
     }
 
-    // --------------------------- TROCAR PARA USUARIO --------------------------- 
-
-    @GetMapping("/auditoria/pagar")
-    public ResponseEntity<List<Pagar>> getAuditoriaPagar(
-            @RequestParam("usuario") String usuario) {
-        return ResponseEntity.ok(movimentacaoService.getAuditoriaPagar(usuario));
-    }
-
-
-    @GetMapping("/auditoria/receber")
-    public ResponseEntity<List<Receber>> getAuditoriaReceber(
-            @RequestParam("usuario") String usuario) {
-        return ResponseEntity.ok(movimentacaoService.getAuditoriaReceber(usuario));
-    }
-
-    // ----------------------------------------------------------------------------
-
     @GetMapping("/{id}")
     public ResponseEntity<Movimentacao> getMovimentacao(@PathVariable Long id) {
         return ResponseEntity.ok(movimentacaoService.getMovimentacao(id));

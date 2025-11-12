@@ -1,5 +1,6 @@
 package appfinance.Services;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 // import java.math.BigDecimal;
 import java.util.List;
@@ -139,16 +140,5 @@ public class MovimentacaoService {
     public List<ExtratoPeriodoDTO> getExtratoPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim){
         
         return extratoPeriodoRepositoryCustom.extratoPeriodo(dataInicio, dataFim);
-    }
-
-    @Transactional
-    public List<Receber> getAuditoriaReceber(String usuario){
-        return receberRepository.auditoriaDuplicatas(usuario, 1);
-    }
-
-    
-    @Transactional
-    public List<Pagar> getAuditoriaPagar(String usuario){
-        return pagarRepository.auditoriaDuplicatas(usuario, 0);
     }
 }

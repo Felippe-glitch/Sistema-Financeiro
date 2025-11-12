@@ -1,5 +1,7 @@
 package appfinance.Services;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import javax.management.RuntimeErrorException;
@@ -8,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import appfinance.Models.Movimentacao;
 import appfinance.Models.Usuario;
 import appfinance.Repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,6 +19,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     private PasswordEncoder passwordEncoder;
+    public Object getAuditoriaDuplicatas;
 
     public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
@@ -64,6 +68,16 @@ public class UsuarioService {
         Optional<Usuario> usuario = usuarioRepository.getUsuario(id);
         return usuario.orElseThrow(() -> new RuntimeException(
                 "Usuário não encontrado! id: " + id));
+    }
+
+    @Transactional
+    public List<Object[]> getAuditoriaDuplicatas(String nome, int tipo, LocalDate emissao, LocalDate vencimento){
+        return usuarioRepository.auditoriaDuplicatas(nome, tipo, emissao, vencimento);
+    }
+
+    @Transactional
+    public List<Movimentacao> getAuditoriaMov(String nome, LocalDate data){
+        return usuarioRepository.auditoriaMov(nome, data);
     }
 
 }

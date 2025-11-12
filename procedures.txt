@@ -1,4 +1,19 @@
 
+CREATE PROCEDURE auditoriaMovimentacoes
+    @NOME VARCHAR(50),          
+    @DATA DATE
+AS
+BEGIN 
+    SELECT * FROM movimentacao
+    WHERE usuario_cad LIKE '%' + @NOME + '%'
+    AND data_registro_movimentacao > = @DATA
+END
+
+
+
+
+
+
 
 
 
@@ -7,29 +22,79 @@
 
 
 CREATE PROCEDURE auditoriaDuplicatas
-	@NOME VARCHAR(50), @TIPO INT
+    @NOME VARCHAR(50),
+    @TIPO INT,                 -- 0 = PAGAR, 1 = RECEBER, 2 = AMBOS
+    @DATA_INICIO DATE = NULL,
+    @DATA_FIM DATE = NULL
 AS
 BEGIN 
-	IF @TIPO = 0
-		SELECT id_pagar,
-		data_emissao,
-		data_vencimento,
-		descricao_pagar,
-		fk_empresa,
-		fk_conta
-		FROM PAGAR 
-		WHERE usuario LIKE '%' + @NOME +'%'
-	ELSE IF @TIPO = 1
-		SELECT id_receber,
-		data_emissao,
-		data_vencimento,
-		descricao_receber,
-		fk_empresa,
-		fk_conta
-		FROM RECEBER 
-		WHERE usuario LIKE '%' + @NOME +'%'
-END 
+    SET NOCOUNT ON;
+
+    IF @TIPO = 0
+    BEGIN
+        SELECT  
+            id_pagar AS id_movimento,
+            data_emissao,
+            data_vencimento,
+            descricao_pagar AS descricao,
+            fk_empresa,
+            fk_conta,
+            'PAGAR' AS tipo
+        FROM PAGAR
+        WHERE usuario LIKE '%' + @NOME + '%'
+          AND (data_emissao >= @DATA_INICIO)
+          AND (data_vencimento <= @DATA_FIM)
+    END
+
+    ELSE IF @TIPO = 1
+    BEGIN
+        SELECT  
+            id_receber AS id_movimento,
+            data_emissao,
+            data_vencimento,
+            descricao_receber AS descricao,
+            fk_empresa,
+            fk_conta,
+            'RECEBER' AS tipo
+        FROM RECEBER
+        WHERE usuario LIKE '%' + @NOME + '%'
+          AND (data_emissao >= @DATA_INICIO)
+          AND (data_vencimento <= @DATA_FIM)
+    END
+
+    ELSE IF @TIPO = 2
+    BEGIN
+        SELECT  
+            id_pagar AS id_movimento,
+            data_emissao,
+            data_vencimento,
+            descricao_pagar AS descricao,
+            fk_empresa,
+            fk_conta,
+            'PAGAR' AS tipo
+        FROM PAGAR
+        WHERE usuario LIKE '%' + @NOME + '%'
+          AND (data_emissao >= @DATA_INICIO)
+          AND (data_vencimento <= @DATA_FIM)
+
+        UNION ALL
+
+        SELECT  
+            id_receber AS id_movimento,
+            data_emissao,
+            data_vencimento,
+            descricao_receber AS descricao,
+            fk_empresa,
+            fk_conta,
+            'RECEBER' AS tipo
+        FROM RECEBER
+        WHERE usuario LIKE '%' + @NOME + '%'
+          AND (data_emissao >= @DATA_INICIO)
+          AND (data_vencimento <= @DATA_FIM)
+    END
+END
 GO
+
 
 
 

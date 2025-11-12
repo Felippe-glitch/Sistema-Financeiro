@@ -9,20 +9,7 @@ import org.springframework.data.repository.query.Param;
 import appfinance.Models.Receber;
 
 public interface ReceberRepository extends JpaRepository<Receber, Long>{
-    // PROCEDURE PARA AUDITORIA DE LANÇAMENTO POR USUÁRIO
-    /*
-     * -> RECEBE:
-     * 
-     * - Nome do Usuário, tipo (0 = pagar, 1 = receber)
-     * 
-     * -> RETORNA: 
-     * 
-     * ID, Data_Emissao, Data_Vencimento, Descricao, Status, Nome_Empresa, Num_Conta  
-     * 
-     */
-    @Procedure(name = "auditoriaDuplicatas")
-    List<Receber> auditoriaDuplicatas(@Param("NOME") String nome, @Param("TIPO") int tipo);
-
+    
     @Procedure(name = "getReceber")
     Receber getReceber(@Param("id_receber") Long id_receber);
 
