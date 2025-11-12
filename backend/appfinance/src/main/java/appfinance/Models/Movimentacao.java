@@ -42,7 +42,7 @@ public class Movimentacao {
     @NotNull
     private LocalDateTime dataRegistroMovimentacao;
 
-    @Column(name = "forma_pagamento", nullable = false, length = 20)
+    @Column(name = "forma_pagamento", nullable = false, length = 30)
     @NotNull
     @Enumerated(EnumType.STRING)
     private FormaPagamento formaPagamento;

@@ -1,6 +1,8 @@
 package appfinance.Controllers;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import appfinance.Models.Pagar;
 import appfinance.Models.Receber;
 import appfinance.Models.Receber.CreateReceber;
 import appfinance.Models.Receber.UpdateReceber;
@@ -80,5 +83,11 @@ public class ReceberController {
         receberService.deleteReceber(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/periodo")
+    public ResponseEntity<List<Receber>> getPagarPeriodo(@RequestParam LocalDate emissao,
+            @RequestParam LocalDate vencimento) {
+                return ResponseEntity.ok(receberService.getReceberPorPeriodo(emissao, vencimento));
     }
 }

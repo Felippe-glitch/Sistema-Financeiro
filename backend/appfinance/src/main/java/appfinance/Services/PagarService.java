@@ -1,5 +1,8 @@
 package appfinance.Services;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -68,5 +71,10 @@ public class PagarService {
     @Transactional
     public Pagar getPagar(Long id){
         return pagarRepository.getPagar(id);
+    }
+
+    @Transactional
+    public List<Pagar> getPagarPorPeriodo(LocalDate emissao, LocalDate vencimento){
+        return pagarRepository.getPagarPeriodo(emissao, vencimento);
     }
 }

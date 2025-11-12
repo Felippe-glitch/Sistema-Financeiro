@@ -246,6 +246,25 @@ END
 go
 
 
+CREATE PROCEDURE pagarPorPeriodo
+	@EMISSAO DATE, @VENCIMENTO DATE
+AS	
+BEGIN
+	SELECT * FROM pagar
+	WHERE data_emissao >= @EMISSAO AND data_vencimento <= @VENCIMENTO
+END
+GO
+
+CREATE PROCEDURE receberPorPeriodo
+	@EMISSAO DATE, @VENCIMENTO DATE
+AS	
+BEGIN
+	SELECT * FROM receber
+	WHERE data_emissao >= @EMISSAO AND data_vencimento <= @VENCIMENTO
+END
+GO
+
+
 
 
 

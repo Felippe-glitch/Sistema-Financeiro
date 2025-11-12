@@ -1,6 +1,8 @@
 package appfinance.Controllers;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -61,7 +63,7 @@ public class PagarController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pagar> getPagar(@PathVariable Long id){
+    public ResponseEntity<Pagar> getPagar(@PathVariable Long id) {
         return ResponseEntity.ok(pagarService.getPagar(id));
     }
 
@@ -77,5 +79,11 @@ public class PagarController {
     public ResponseEntity<Void> deletePagar(@PathVariable Long id) {
         pagarService.deletePagar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/periodo")
+    public ResponseEntity<List<Pagar>> getPagarPeriodo(@RequestParam LocalDate emissao,
+            @RequestParam LocalDate vencimento) {
+                return ResponseEntity.ok(pagarService.getPagarPorPeriodo(emissao, vencimento));
     }
 }
