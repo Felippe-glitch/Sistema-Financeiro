@@ -11,10 +11,10 @@ import appfinance.Models.Receber;
 
 public interface ReceberRepository extends JpaRepository<Receber, Long>{
     
-    @Procedure(name = "getReceber")
+    @Procedure(procedureName = "getReceber")
     Receber getReceber(@Param("id_receber") Long id_receber);
 
-    @Procedure(name = "receberPorPeriodo")
+    @Procedure(procedureName = "receberPorPeriodo")
     List<Receber> getReceberPeriodo(@Param("emissao") LocalDate emissao, @Param("vencimento") LocalDate vencimento);
 
 }

@@ -10,9 +10,9 @@ import org.springframework.data.repository.query.Param;
 import appfinance.Models.Pagar;
 
 public interface PagarRepository extends JpaRepository<Pagar, Long> {
-    @Procedure(name = "getPagar")
+    @Procedure(procedureName = "getPagar")
     Pagar getPagar(@Param("id_pagar") Long id_pagar);
 
-    @Procedure(name = "pagarPorPeriodo")
+    @Procedure(procedureName = "pagarPorPeriodo")
     List<Pagar> getPagarPeriodo(@Param("emissao") LocalDate emissao, @Param("vencimento") LocalDate vencimento);
 }
