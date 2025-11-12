@@ -1,6 +1,7 @@
 package appfinance.Controllers;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import appfinance.Models.Empresa;
 import appfinance.Models.Empresa.CreateEmpresa;
 import appfinance.Models.Empresa.UpdateEmpresa;
-import appfinance.Models.Receber;
 import appfinance.Services.EmpresaService;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,10 +56,19 @@ public class EmpresaController {
     }
 
     @GetMapping("/extrato/cliente")
-    public ResponseEntity<List<Receber>> getMethodName(@RequestParam Long id) {
-        return ResponseEntity.ok(empresaService.getExtratoCliente(id));
+    public ResponseEntity<List<Object[]>> getExtratoCliente(@RequestParam Long id, @RequestParam LocalDate emissao, @RequestParam LocalDate vencimento) {
+        return ResponseEntity.ok(empresaService.getExtratoCliente(id, emissao, vencimento));
     }
-    
+
+    @GetMapping("/extrato/fornecedor")
+    public ResponseEntity<List<Object[]>> getExtratoFornecedor(@RequestParam Long id, @RequestParam LocalDate emissao, @RequestParam LocalDate vencimento) {
+        return ResponseEntity.ok(empresaService.getExtratoFornecedor(id, emissao, vencimento));
+    }
+
+    @GetMapping("/extrato/ambos")
+    public ResponseEntity<List<Object[]>> getExtratoAmbos(@RequestParam Long id, @RequestParam LocalDate emissao, @RequestParam LocalDate vencimento) {
+        return ResponseEntity.ok(empresaService.getExtratoAmbos(id, emissao, vencimento));
+    }
 
     @PutMapping("/{id}")
     @Validated(UpdateEmpresa.class)

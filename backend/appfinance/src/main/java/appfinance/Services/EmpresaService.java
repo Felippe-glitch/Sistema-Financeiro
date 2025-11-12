@@ -1,5 +1,6 @@
 package appfinance.Services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import appfinance.Models.Empresa;
-import appfinance.Models.Receber;
 import appfinance.Repository.EmpresaRepository;
 
 @Service
@@ -79,7 +79,17 @@ public class EmpresaService {
     }
 
     @Transactional
-    public List<Receber> getExtratoCliente(Long id){
-        return empresaRepository.receberByCliente((id));
+    public List<Object[]> getExtratoCliente(Long id, LocalDate emissao, LocalDate vencimento){
+        return empresaRepository.extratoCliente(id, emissao, vencimento);
+    }
+
+    @Transactional
+    public List<Object[]> getExtratoFornecedor(Long id, LocalDate emissao, LocalDate vencimento){
+        return empresaRepository.extratoFornecedor(id, emissao, vencimento);
+    }
+
+    @Transactional
+    public List<Object[]> getExtratoAmbos(Long id, LocalDate emissao, LocalDate vencimento){
+        return empresaRepository.extratoAmbos(id, emissao, vencimento);
     }
 }
